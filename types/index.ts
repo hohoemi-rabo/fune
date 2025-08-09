@@ -20,6 +20,7 @@ export interface PortfolioDetail {
 
 // 専門分野の型定義
 export interface ExpertiseItem {
+  id: string;
   icon: string;
   title: string;
   description: string;
