@@ -49,6 +49,7 @@ export interface PricingPlan {
   price: string;
   features: string[];
   isPopular?: boolean;
+  popularText?: string;
   color?: string;
 }
 
