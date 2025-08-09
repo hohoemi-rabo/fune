@@ -5,7 +5,7 @@ export const particlesConfig = {
       value: 80,
       density: {
         enable: true,
-        area: 800,
+        value_area: 800,
       },
     },
     color: {
@@ -22,7 +22,7 @@ export const particlesConfig = {
       value: 3,
       random: true,
     },
-    links: {
+    line_linked: {
       enable: true,
       distance: 150,
       color: '#ffffff',
@@ -35,38 +35,36 @@ export const particlesConfig = {
       direction: 'none' as const,
       random: false,
       straight: false,
-      outModes: 'out' as const,
+      out_mode: 'out' as const,
       bounce: false,
     },
   },
   interactivity: {
-    detectsOn: 'canvas' as const,
+    detect_on: 'canvas' as const,
     events: {
-      onHover: {
+      onhover: {
         enable: true,
         mode: 'grab' as const,
       },
-      onClick: {
+      onclick: {
         enable: true,
         mode: 'push' as const,
       },
-      resize: {
-        enable: true,
-      },
+      resize: true,
     },
     modes: {
       grab: {
         distance: 140,
-        links: {
+        line_linked: {
           opacity: 0.5,
         },
       },
       push: {
-        quantity: 4,
+        particles_nb: 4,
       },
     },
   },
-  detectRetina: true,
+  retina_detect: true,
 };
 
 // モバイル用のパーティクル設定
@@ -78,7 +76,7 @@ export const mobileParticlesConfig = {
       value: 40, // モバイルでは半分に
       density: {
         enable: true,
-        area: 800,
+        value_area: 800,
       },
     },
   },
@@ -127,7 +125,9 @@ export const tiltConfig = {
 };
 
 // Framer Motionのアニメーションバリアント
-export const fadeInUpVariants = {
+import { Variants } from 'framer-motion';
+
+export const fadeInUpVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 20,
@@ -142,7 +142,7 @@ export const fadeInUpVariants = {
   },
 };
 
-export const fadeInVariants = {
+export const fadeInVariants: Variants = {
   hidden: {
     opacity: 0,
   },
@@ -155,7 +155,7 @@ export const fadeInVariants = {
   },
 };
 
-export const scaleInVariants = {
+export const scaleInVariants: Variants = {
   hidden: {
     opacity: 0,
     scale: 0.8,
@@ -170,7 +170,7 @@ export const scaleInVariants = {
   },
 };
 
-export const slideInLeftVariants = {
+export const slideInLeftVariants: Variants = {
   hidden: {
     opacity: 0,
     x: -20,
@@ -185,7 +185,7 @@ export const slideInLeftVariants = {
   },
 };
 
-export const slideInRightVariants = {
+export const slideInRightVariants: Variants = {
   hidden: {
     opacity: 0,
     x: 20,
@@ -201,7 +201,7 @@ export const slideInRightVariants = {
 };
 
 // スタガーアニメーション用のコンテナバリアント
-export const staggerContainerVariants = {
+export const staggerContainerVariants: Variants = {
   hidden: {
     opacity: 0,
   },
@@ -214,7 +214,7 @@ export const staggerContainerVariants = {
   },
 };
 
-export const staggerItemVariants = {
+export const staggerItemVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 20,
@@ -230,7 +230,7 @@ export const staggerItemVariants = {
 };
 
 // 波アニメーションのバリアント
-export const waveVariants = {
+export const waveVariants: Variants = {
   animate: {
     y: [0, -10, 0],
     transition: {
@@ -242,7 +242,7 @@ export const waveVariants = {
 };
 
 // フロートアニメーションのバリアント
-export const floatVariants = {
+export const floatVariants: Variants = {
   animate: {
     y: [0, -20, -10, -30, 0],
     x: [0, 10, -10, 5, 0],
@@ -255,7 +255,7 @@ export const floatVariants = {
 };
 
 // モーダルアニメーションのバリアント
-export const modalOverlayVariants = {
+export const modalOverlayVariants: Variants = {
   hidden: {
     opacity: 0,
   },
@@ -273,7 +273,7 @@ export const modalOverlayVariants = {
   },
 };
 
-export const modalContentVariants = {
+export const modalContentVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 50,
