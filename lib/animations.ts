@@ -5,7 +5,7 @@ export const particlesConfig = {
       value: 80,
       density: {
         enable: true,
-        value_area: 800,
+        area: 800,
       },
     },
     color: {
@@ -22,7 +22,7 @@ export const particlesConfig = {
       value: 3,
       random: true,
     },
-    line_linked: {
+    links: {
       enable: true,
       distance: 150,
       color: '#ffffff',
@@ -35,36 +35,38 @@ export const particlesConfig = {
       direction: 'none' as const,
       random: false,
       straight: false,
-      out_mode: 'out' as const,
+      outModes: 'out' as const,
       bounce: false,
     },
   },
   interactivity: {
-    detect_on: 'canvas' as const,
+    detectsOn: 'canvas' as const,
     events: {
-      onhover: {
+      onHover: {
         enable: true,
         mode: 'grab' as const,
       },
-      onclick: {
+      onClick: {
         enable: true,
         mode: 'push' as const,
       },
-      resize: true,
+      resize: {
+        enable: true,
+      },
     },
     modes: {
       grab: {
         distance: 140,
-        line_linked: {
+        links: {
           opacity: 0.5,
         },
       },
       push: {
-        particles_nb: 4,
+        quantity: 4,
       },
     },
   },
-  retina_detect: true,
+  detectRetina: true,
 };
 
 // モバイル用のパーティクル設定
@@ -76,7 +78,7 @@ export const mobileParticlesConfig = {
       value: 40, // モバイルでは半分に
       density: {
         enable: true,
-        value_area: 800,
+        area: 800,
       },
     },
   },
