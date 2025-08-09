@@ -1,0 +1,200 @@
+'use client';
+
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import Modal from '@/components/ui/Modal';
+import FilterButton from '@/components/ui/FilterButton';
+import { PortfolioItem, PortfolioDetail } from '@/types';
+import {
+  staggerContainerVariants,
+  staggerItemVariants,
+  scaleInVariants,
+} from '@/lib/animations';
+import { getPlaceholderImage } from '@/lib/utils';
+
+interface PortfolioProps {
+  title: string;
+  items: Array<PortfolioItem & { detail: PortfolioDetail }>;
+  description: string;
+}
+
+export default function Portfolio({
+  title,
+  items,
+  description,
+}: PortfolioProps) {
+  const [filter, setFilter] = useState<'all' | 'magazine' | 'web'>('all');
+  const [selectedItem, setSelectedItem] = useState<
+    (PortfolioItem & { detail: PortfolioDetail }) | null
+  >(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // フィルタリングされたアイテム
+  const filteredItems = items.filter(
+    (item) => filter === 'all' || item.category === filter
+  );
+
+  const handleItemClick = (
+    item: PortfolioItem & { detail: PortfolioDetail }
+  ) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedItem(null), 300);
+  };
+
+  // 画像URLの処理（プレースホルダー対応）
+  const getImageUrl = (item: PortfolioItem) => {
+    if (item.image.startsWith('http')) {
+      return item.image;
+    }
+    if (item.image.startsWith('/')) {
+      return item.image;
+    }
+    // プレースホルダー画像を生成
+    const colors: Record<string, string> = {
+      koujirai: '87CEEB',
+      hyogo1000: 'FFD700',
+      mapple: 'FF6B6B',
+      'kobe-fashion': '26A69A',
+      arukikata: '4A90E2',
+      'kobe-dream': 'E0F2F1',
+      'mapple-web': '9C27B0',
+      lancers: 'F44336',
+      'yahoo-news': '00BCD4',
+    };
+    return getPlaceholderImage(
+      400,
+      300,
+      colors[item.id] || '87CEEB',
+      'FFFFFF',
+      item.title
+    );
+  };
+
+  return (
+    <section id="portfolio" className="py-20 bg-sand-white">
+      <div className="container mx-auto px-4">
+        <motion.h2
+          className="text-4xl font-zen font-medium text-center mb-12 gradient-text"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerItemVariants}
+        >
+          {title}
+        </motion.h2>
+
+        {/* フィルターボタン */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-4 mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerItemVariants}
+        >
+          <FilterButton
+            active={filter === 'all'}
+            onClick={() => setFilter('all')}
+          >
+            すべて
+          </FilterButton>
+          <FilterButton
+            active={filter === 'magazine'}
+            onClick={() => setFilter('magazine')}
+          >
+            雑誌媒体
+          </FilterButton>
+          <FilterButton
+            active={filter === 'web'}
+            onClick={() => setFilter('web')}
+          >
+            Web媒体
+          </FilterButton>
+        </motion.div>
+
+        {/* ポートフォリオグリッド */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainerVariants}
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                layout
+                variants={scaleInVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="portfolio-item relative overflow-hidden rounded-lg shadow-lg group cursor-pointer"
+                onClick={() => handleItemClick(item)}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="relative w-full h-64">
+                  {getImageUrl(item).startsWith('http') ? (
+                    <img
+                      src={getImageUrl(item)}
+                      alt={item.imageAlt}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <Image
+                      src={getImageUrl(item)}
+                      alt={item.imageAlt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  )}
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <div className="text-white">
+                    <h3 className="text-xl font-zen font-medium mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm font-kiwi font-light">
+                      {item.shortDescription}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* 説明文 */}
+        {description && (
+          <motion.div
+            className="mt-16 max-w-4xl mx-auto text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerItemVariants}
+          >
+            <div
+              className="text-gray-700 leading-relaxed font-kiwi"
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
+          </motion.div>
+        )}
+      </div>
+
+      {/* モーダル */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        data={selectedItem?.detail || null}
+      />
+    </section>
+  );
+}
