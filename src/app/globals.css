@@ -1,26 +1,399 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500&family=Kiwi+Maru:wght@300;400;500&family=Noto+Serif+JP:wght@300;400&display=swap');
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  /* 基本フォント設定 */
+  body {
+    @apply font-kiwi font-light leading-relaxed tracking-wider;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* 見出し共通設定 */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-zen font-medium leading-tight tracking-wide;
+  }
+
+  /* 見出しサイズとウェイト調整 */
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    @apply font-medium;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    @apply font-medium;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    @apply font-normal;
+  }
+
+  h4 {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    @apply font-normal;
+  }
+
+  /* 本文の調整 */
+  p {
+    @apply font-kiwi font-light leading-relaxed;
+  }
+
+  /* フォーム要素 */
+  input,
+  textarea,
+  select {
+    @apply font-kiwi font-light;
+  }
+
+  label {
+    @apply font-zen font-normal text-sm;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Premium Glass Effect */
+  .glass-premium {
+    @apply bg-white/10 backdrop-blur-[20px] border border-white/30;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  }
+
+  /* Glassmorphism */
+  .glassmorphism {
+    @apply bg-white/20 backdrop-blur-[10px] border border-white/30;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-cobalt-blue to-light-cobalt bg-clip-text text-transparent;
+  }
+
+  /* リード文やサブタイトル */
+  .lead-text {
+    @apply font-kiwi font-normal text-lg leading-relaxed;
+  }
+
+  /* アクセントテキスト */
+  .accent-text {
+    @apply font-noto-serif font-normal tracking-[0.08em];
+  }
+
+  /* カード内のテキスト */
+  .card-title {
+    @apply font-zen font-medium;
+  }
+
+  .card-text {
+    @apply font-kiwi font-light;
+  }
+
+  /* 統計数字 */
+  .stat-number {
+    @apply font-zen font-medium text-5xl;
+  }
+
+  .stat-label {
+    @apply font-kiwi font-light text-sm;
+  }
+
+  /* Fade In Observer Animation */
+  .fade-in-observer {
+    @apply opacity-0 translate-y-5 transition-all duration-[800ms] ease-out;
+  }
+
+  .fade-in-observer.is-visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Timeline Item Animation */
+  .timeline-item {
+    @apply opacity-0 -translate-x-5 transition-all duration-[800ms] ease-out;
+  }
+
+  .timeline-item.is-visible {
+    @apply opacity-100 translate-x-0;
+  }
+
+  /* Aurora Wave Text Effect */
+  .aurora-wave-text {
+    @apply relative inline-block text-white font-medium;
+    background-image: linear-gradient(
+      90deg,
+      white 0%,
+      white 40%,
+      #00ffff 42%,
+      #ff00ff 44%,
+      #ffff00 46%,
+      #ff00aa 48%,
+      #00ff00 50%,
+      #0099ff 52%,
+      #ff0066 54%,
+      white 56%,
+      white 100%
+    );
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: aurora-sweep 8s linear infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+  }
+
+  .aurora-wave-text::before {
+    content: attr(data-text);
+    @apply absolute left-0 top-0 -z-10 text-white blur-[3px] opacity-80;
+  }
+
+  .aurora-wave-text::after {
+    content: '';
+    @apply absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 pointer-events-none;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.2) 0%,
+      transparent 70%
+    );
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  /* Aurora Wave Text Reverse */
+  .aurora-wave-text-reverse {
+    @apply relative inline-block text-white font-medium;
+    background-image: linear-gradient(
+      -90deg,
+      white 0%,
+      white 40%,
+      #00ffff 42%,
+      #ff00ff 44%,
+      #ffff00 46%,
+      #00ff00 48%,
+      #ff00ff 50%,
+      #00ffff 52%,
+      white 54%,
+      white 100%
+    );
+    background-size: 250% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: aurora-wave-reverse 8s linear infinite;
+  }
+
+  .aurora-wave-text-reverse::before {
+    content: attr(data-text);
+    @apply absolute left-0 top-0 -z-10 text-white blur-[3px] opacity-80;
+  }
+
+  .aurora-wave-text-reverse::after {
+    content: '';
+    @apply absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 pointer-events-none;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.2) 0%,
+      transparent 70%
+    );
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  /* Wave Animation */
+  .wave-animation {
+    @apply animate-wave;
+  }
+
+  /* Counter Animation */
+  .counter-animation {
+    @apply inline-block animate-countUp;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .stat-number::before {
+    content: '';
+    @apply absolute top-1/2 left-1/2 w-[120%] h-[120%] -translate-x-1/2 -translate-y-1/2 scale-0 rounded-full pointer-events-none transition-transform duration-600 ease-out;
+    background: radial-gradient(
+      circle,
+      rgba(0, 119, 190, 0.3) 0%,
+      transparent 70%
+    );
+  }
+
+  .stat-number.counting::before {
+    animation: pulseGlow 1s ease-out;
+  }
+
+  /* Number Roller */
+  .number-roller {
+    @apply inline-block relative overflow-hidden h-[1.2em] align-middle;
+  }
+
+  .number-roller-digit {
+    @apply inline-block relative animate-rollNumber;
+  }
+
+  /* Wave Flow Background */
+  .wave-flow-background {
+    @apply absolute top-0 left-0 w-full h-full overflow-hidden;
+    background: linear-gradient(to bottom, #005a9c, #003d6b);
+  }
+
+  .wave-flow-background::before {
+    content: '';
+    @apply absolute w-[200%] h-full top-0 left-0;
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(135, 206, 235, 0.15) 15%,
+      rgba(255, 255, 255, 0.1) 30%,
+      rgba(135, 206, 235, 0.15) 45%,
+      transparent 60%,
+      rgba(74, 144, 226, 0.1) 75%,
+      rgba(255, 255, 255, 0.05) 85%,
+      transparent 100%
+    );
+    animation: wave-flow 25s linear infinite;
+    will-change: transform;
+  }
+
+  /* 3D Card効果 */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .card-3d {
+    transform-style: preserve-3d;
+    @apply transition-transform duration-600;
+  }
+
+  /* Animate Float */
+  .animate-float {
+    animation: float 15s ease-in-out infinite;
+  }
+
+  /* Modal Styles */
+  .modal {
+    @apply hidden fixed z-[1000] left-0 top-0 w-full h-full overflow-auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .modal.show {
+    @apply flex items-center justify-center;
+  }
+
+  .modal-content {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    @apply m-auto p-0 rounded-[20px] w-[90%] max-w-[700px] max-h-[90vh] overflow-y-auto relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, #005a9c 0%, #0077be 100%);
+    @apply text-white p-8 rounded-t-[20px] relative;
+  }
+
+  .modal-close {
+    @apply absolute top-6 right-6 text-white text-3xl font-bold cursor-pointer rounded-full w-10 h-10 flex items-center justify-center transition-all duration-300;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    @apply rotate-90;
+  }
+
+  .modal-body {
+    @apply p-8;
+  }
+
+  .modal-meta {
+    @apply grid gap-6 mb-8 p-6 rounded-[15px];
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
+  }
+
+  .modal-meta-item {
+    @apply flex flex-col;
+  }
+
+  .modal-meta-label {
+    @apply text-sm text-gray-600 mb-1 font-medium;
+  }
+
+  .modal-meta-value {
+    @apply text-base text-gray-800 font-semibold;
+  }
+
+  .modal-description {
+    @apply leading-relaxed text-gray-700 mb-6;
+  }
+
+  .modal-tags {
+    @apply flex flex-wrap gap-2 mt-6;
+  }
+
+  .modal-tag {
+    background: linear-gradient(135deg, #4dd0e1 0%, #26a69a 100%);
+    @apply text-white px-4 py-1.5 rounded-[20px] text-sm font-medium;
+  }
+
+  /* Portfolio Item */
+  .portfolio-item {
+    @apply cursor-pointer;
+  }
+
+  /* Back to Top Button */
+  #back-to-top {
+    @apply opacity-0 invisible;
+  }
+
+  #back-to-top.visible {
+    @apply opacity-100 visible;
+  }
+}
+
+@layer utilities {
+  /* Animation Paused */
+  .animation-paused .wave-flow-background::before {
+    animation-play-state: paused;
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .wave-flow-background::before,
+    .wave-animation,
+    #particles-js {
+      animation: none !important;
+    }
+  }
+
+  /* レスポンシブ調整 */
+  @media (max-width: 768px) {
+    body {
+      @apply text-[0.95rem];
+    }
+
+    h1 {
+      @apply font-normal;
+    }
+
+    h2 {
+      @apply font-normal;
+    }
+  }
+
+  /* Tilt.js グレア効果のカスタマイズ */
+  .js-tilt-glare {
+    @apply rounded-2xl;
+  }
 }
