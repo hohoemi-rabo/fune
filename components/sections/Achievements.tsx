@@ -194,7 +194,6 @@ export default function Achievements({
 export function StaticAchievements({
   title,
   items,
-  description,
 }: AchievementsProps) {
   return (
     <section className="py-20 bg-gradient-to-r from-ocean-cobalt to-cobalt-blue text-white">

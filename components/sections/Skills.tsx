@@ -40,7 +40,7 @@ function TimelineItem({ skill, index }: { skill: SkillItem; index: number }) {
 
   return (
     <div
-      ref={ref as any}
+      ref={ref}
       className={`relative flex items-center mb-16 ${className}`}
     >
       {isEven ? (
