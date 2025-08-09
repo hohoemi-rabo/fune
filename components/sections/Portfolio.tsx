@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Modal from '@/components/ui/Modal';
-import FilterButton from '@/components/ui/FilterButton';
 import { PortfolioItem, PortfolioDetail } from '@/types';
 import { staggerItemVariants } from '@/lib/animations';
 import { getPlaceholderImage } from '@/lib/utils';
@@ -25,6 +24,11 @@ export default function Portfolio({
     (PortfolioItem & { detail: PortfolioDetail }) | null
   >(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // フィルター変更処理
+  const handleFilterChange = (newFilter: 'all' | 'magazine' | 'web') => {
+    setFilter(newFilter);
+  };
 
   // フィルタリングされたアイテム
   const filteredItems = items.filter(
@@ -91,62 +95,71 @@ export default function Portfolio({
         </motion.h2>
 
         {/* フィルターボタン */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-4 mb-12"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerItemVariants}
-        >
-          <FilterButton
-            active={filter === 'all'}
-            onClick={() => setFilter('all')}
+        <div className="flex flex-wrap justify-center gap-4 mb-12 relative z-10">
+          <button
+            className={`px-6 py-2 rounded-full font-zen font-medium transition-all duration-300 cursor-pointer ${
+              filter === 'all'
+                ? 'bg-ocean-cobalt text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-ocean-cobalt hover:text-white'
+            }`}
+            onClick={() => handleFilterChange('all')}
+            type="button"
           >
             すべて
-          </FilterButton>
-          <FilterButton
-            active={filter === 'magazine'}
-            onClick={() => setFilter('magazine')}
+          </button>
+          <button
+            className={`px-6 py-2 rounded-full font-zen font-medium transition-all duration-300 cursor-pointer ${
+              filter === 'magazine'
+                ? 'bg-ocean-cobalt text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-ocean-cobalt hover:text-white'
+            }`}
+            onClick={() => handleFilterChange('magazine')}
+            type="button"
           >
             雑誌媒体
-          </FilterButton>
-          <FilterButton
-            active={filter === 'web'}
-            onClick={() => setFilter('web')}
+          </button>
+          <button
+            className={`px-6 py-2 rounded-full font-zen font-medium transition-all duration-300 cursor-pointer ${
+              filter === 'web'
+                ? 'bg-ocean-cobalt text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-ocean-cobalt hover:text-white'
+            }`}
+            onClick={() => handleFilterChange('web')}
+            type="button"
           >
             Web媒体
-          </FilterButton>
-        </motion.div>
+          </button>
+        </div>
 
         {/* ポートフォリオグリッド */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {filteredItems.map((item, index) => (
               <motion.div
-                key={`${filter}-${item.id}`}
+                key={item.id}
                 layout
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ 
                   opacity: 1, 
-                  scale: 1,
+                  y: 0,
                   transition: {
-                    duration: 0.4,
-                    delay: index * 0.1,
-                    ease: [0.4, 0, 0.2, 1]
+                    duration: 0.3,
+                    delay: index * 0.05,
+                    ease: "easeOut"
                   }
                 }}
                 exit={{ 
                   opacity: 0, 
-                  scale: 0.8,
+                  y: -20,
                   transition: { duration: 0.2 }
                 }}
                 className="portfolio-item relative overflow-hidden rounded-lg shadow-lg group cursor-pointer"
                 onClick={() => handleItemClick(item)}
                 whileHover={{ 
-                  scale: 1.05,
+                  scale: 1.03,
                   transition: { duration: 0.2 }
                 }}
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <div className="relative w-full h-64">
                   {getImageUrl(item).startsWith('http') ? (
@@ -177,8 +190,8 @@ export default function Portfolio({
                 </div>
               </motion.div>
             ))}
-          </AnimatePresence>
-        </div>
+          </div>
+        </AnimatePresence>
 
         {/* 説明文 */}
         {description && (
