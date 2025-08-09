@@ -6,11 +6,7 @@ import Image from 'next/image';
 import Modal from '@/components/ui/Modal';
 import FilterButton from '@/components/ui/FilterButton';
 import { PortfolioItem, PortfolioDetail } from '@/types';
-import {
-  staggerContainerVariants,
-  staggerItemVariants,
-  scaleInVariants,
-} from '@/lib/animations';
+import { staggerItemVariants } from '@/lib/animations';
 import { getPlaceholderImage } from '@/lib/utils';
 
 interface PortfolioProps {
@@ -38,7 +34,12 @@ export default function Portfolio({
   const handleItemClick = (
     item: PortfolioItem & { detail: PortfolioDetail }
   ) => {
-    setSelectedItem(item);
+    // detailにtitleが含まれていることを確認し、含まれていなければ追加
+    const detailWithTitle = {
+      ...item.detail,
+      title: item.detail.title || item.title,
+    };
+    setSelectedItem({ ...item, detail: detailWithTitle });
     setIsModalOpen(true);
   };
 
@@ -118,27 +119,34 @@ export default function Portfolio({
         </motion.div>
 
         {/* ポートフォリオグリッド */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainerVariants}
-        >
-          <AnimatePresence mode="popLayout">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <AnimatePresence mode="wait">
             {filteredItems.map((item, index) => (
               <motion.div
-                key={item.id}
+                key={`${filter}-${item.id}`}
                 layout
-                variants={scaleInVariants}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                transition={{ duration: 0.3, delay: index * 0.05 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1,
+                  transition: {
+                    duration: 0.4,
+                    delay: index * 0.1,
+                    ease: [0.4, 0, 0.2, 1]
+                  }
+                }}
+                exit={{ 
+                  opacity: 0, 
+                  scale: 0.8,
+                  transition: { duration: 0.2 }
+                }}
                 className="portfolio-item relative overflow-hidden rounded-lg shadow-lg group cursor-pointer"
                 onClick={() => handleItemClick(item)}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                whileTap={{ scale: 0.95 }}
               >
                 <div className="relative w-full h-64">
                   {getImageUrl(item).startsWith('http') ? (
@@ -170,7 +178,7 @@ export default function Portfolio({
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* 説明文 */}
         {description && (
@@ -193,7 +201,7 @@ export default function Portfolio({
       <Modal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        data={selectedItem?.detail || null}
+        data={selectedItem ? selectedItem.detail : null}
       />
     </section>
   );
