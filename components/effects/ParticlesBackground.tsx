@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { loadFull } from 'tsparticles';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
-import type { Container } from '@tsparticles/engine';
+import type { Container, ISourceOptions } from '@tsparticles/engine';
 import {
   particlesConfig,
   mobileParticlesConfig,
@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 interface ParticlesBackgroundProps {
   className?: string;
   id?: string;
-  config?: any;
+  config?: ISourceOptions;
 }
 
 export default function ParticlesBackground({
@@ -32,7 +32,7 @@ export default function ParticlesBackground({
     });
   }, []);
 
-  const particlesLoaded = useCallback(async (container?: Container) => {
+  const particlesLoaded = useCallback(async (_container?: Container) => {
     // パーティクルがロードされた後の処理（必要に応じて）
     console.log('Particles loaded');
   }, []);
@@ -68,7 +68,7 @@ export function SimpleParticlesBackground({
         value: 30,
         density: {
           enable: true,
-          value_area: 1000,
+          area: 1000,
         },
       },
       color: {
@@ -91,21 +91,21 @@ export function SimpleParticlesBackground({
         direction: 'none' as const,
         random: false,
         straight: false,
-        out_mode: 'out' as const,
+        outModes: 'out' as const,
         bounce: false,
       },
     },
     interactivity: {
       events: {
-        onhover: {
+        onHover: {
           enable: false,
         },
-        onclick: {
+        onClick: {
           enable: false,
         },
       },
     },
-    retina_detect: true,
+    detectRetina: true,
   };
 
   return (
@@ -124,7 +124,7 @@ export function ColorfulParticlesBackground({
         value: 50,
         density: {
           enable: true,
-          value_area: 800,
+          area: 800,
         },
       },
       color: {
@@ -147,18 +147,18 @@ export function ColorfulParticlesBackground({
         direction: 'none' as const,
         random: true,
         straight: false,
-        out_mode: 'bounce' as const,
+        outModes: 'bounce' as const,
         bounce: false,
       },
     },
     interactivity: {
-      detect_on: 'canvas' as const,
+      detectsOn: 'canvas' as const,
       events: {
-        onhover: {
+        onHover: {
           enable: true,
           mode: 'repulse' as const,
         },
-        onclick: {
+        onClick: {
           enable: true,
           mode: 'bubble' as const,
         },
@@ -176,7 +176,7 @@ export function ColorfulParticlesBackground({
         },
       },
     },
-    retina_detect: true,
+    detectRetina: true,
   };
 
   return (
@@ -199,7 +199,7 @@ export function StarsParticlesBackground({
         value: 100,
         density: {
           enable: true,
-          value_area: 1000,
+          area: 1000,
         },
       },
       color: {
@@ -211,20 +211,20 @@ export function StarsParticlesBackground({
       opacity: {
         value: 0.8,
         random: true,
-        anim: {
+        animation: {
           enable: true,
           speed: 1,
-          opacity_min: 0.1,
+          minimumValue: 0.1,
           sync: false,
         },
       },
       size: {
         value: 2,
         random: true,
-        anim: {
+        animation: {
           enable: true,
           speed: 2,
-          size_min: 0.1,
+          minimumValue: 0.1,
           sync: false,
         },
       },
@@ -234,12 +234,12 @@ export function StarsParticlesBackground({
         direction: 'none' as const,
         random: true,
         straight: false,
-        out_mode: 'out' as const,
+        outModes: 'out' as const,
       },
     },
     interactivity: {
       events: {
-        onhover: {
+        onHover: {
           enable: true,
           mode: 'grab' as const,
         },
@@ -247,13 +247,13 @@ export function StarsParticlesBackground({
       modes: {
         grab: {
           distance: 140,
-          line_linked: {
+          links: {
             opacity: 0.5,
           },
         },
       },
     },
-    retina_detect: true,
+    detectRetina: true,
   };
 
   return (
