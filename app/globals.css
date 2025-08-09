@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-zen: 'Zen Maru Gothic', sans-serif;
+    --font-kiwi: 'Kiwi Maru', serif;
+    --font-noto-serif: 'Noto Serif JP', serif;
+    
+    --color-ocean-cobalt: #004A8D;
+    --color-deep-ocean: #1A237E;
+    --color-soft-blue: #87CEEB;
+    --color-pale-blue: #E6F3F9;
+    --color-coral-pink: #FF6B6B;
+    --color-sand-white: #FFF8E7;
+    --color-warm-gray: #6B7280;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .heading-xl {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold;
+  }
+
+  .heading-lg {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold;
+  }
+
+  .heading-md {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-semibold;
+  }
+
+  .heading-sm {
+    @apply text-xl sm:text-2xl lg:text-3xl font-semibold;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer utilities {
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wave-clip {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+
+  .diagonal-clip {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  }
+}
+
+/* カスタムアニメーション */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(-5px) translateY(-5px);
+  }
+  50% {
+    transform: translateX(0) translateY(-10px);
+  }
+  75% {
+    transform: translateX(5px) translateY(-5px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Swiperカスタマイズ */
+.swiper-pagination-bullet {
+  @apply bg-white opacity-50;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-coral-pink opacity-100;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply text-white;
+}
+
+/* フォーカススタイル */
+*:focus-visible {
+  @apply outline-none ring-2 ring-coral-pink ring-offset-2;
+}
+
+/* セレクション */
+::selection {
+  @apply bg-soft-blue text-deep-ocean;
+}
+
+/* プリント用スタイル */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
