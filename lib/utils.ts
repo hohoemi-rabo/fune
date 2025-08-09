@@ -154,7 +154,7 @@ export const getPlaceholderImage = (
   textColor: string = 'FFFFFF',
   text: string = 'Image'
 ) => {
-  return `https://via.placeholder.com/${width}x${height}/${bgColor}/${textColor}?text=${encodeURIComponent(
+  return `https://placehold.co/${width}x${height}/${bgColor}/${textColor}?text=${encodeURIComponent(
     text
   )}`;
 };

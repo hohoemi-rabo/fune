@@ -168,7 +168,7 @@
 
 /* セレクション */
 ::selection {
-  @apply bg-soft-blue text-deep-ocean;
+  @apply bg-sky-cobalt text-deep-ocean;
 }
 
 /* プリント用スタイル */
