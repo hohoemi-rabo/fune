@@ -1,0 +1,2857 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>本岡紗代 | 海と離島を愛するWebライター</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'cobalt-blue': '#005A9C',
+              'deep-cobalt': '#003D6B',
+              'light-cobalt': '#4A90E2',
+              'ocean-cobalt': '#0077BE',
+              'sky-cobalt': '#87CEEB',
+              'coral-pink': '#FF6B6B',
+              'sand-white': '#FAFAFA',
+              'sunset-gold': '#FFD700',
+              'sea-foam': '#E0F2F1',
+              'deep-ocean': '#1A237E',
+              'warm-gray': '#757575',
+              'shell-beige': '#FFF8E1',
+              'seaweed-green': '#26A69A',
+              'aurora-teal': '#4DD0E1',
+              'aurora-purple': '#9C27B0',
+              'aurora-pink': '#E91E63',
+            },
+            fontFamily: {
+              zen: ['Zen Maru Gothic', 'sans-serif'],
+              kiwi: ['Kiwi Maru', 'sans-serif'],
+              'noto-serif': ['Noto Serif JP', 'serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500&family=Kiwi+Maru:wght@300;400;500&family=Noto+Serif+JP:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+      /* ===================================
+           カスタムタイポグラフィ設定
+           =================================== */
+
+      /* 基本フォント設定 */
+      body {
+        font-family: 'Kiwi Maru', sans-serif;
+        font-weight: 300;
+        line-height: 1.7;
+        letter-spacing: 0.05em;
+      }
+
+      /* 見出し共通設定 */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+      }
+
+      /* 見出しサイズとウェイト調整 */
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        font-weight: 500;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 500;
+      }
+
+      h3 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 400;
+      }
+
+      h4 {
+        font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+        font-weight: 400;
+      }
+
+      /* 本文の調整 */
+      p {
+        font-family: 'Kiwi Maru', sans-serif;
+        font-weight: 300;
+        line-height: 1.8;
+      }
+
+      /* リード文やサブタイトル */
+      .lead-text {
+        font-family: 'Kiwi Maru', sans-serif;
+        font-weight: 400;
+        font-size: 1.125rem;
+        line-height: 1.7;
+      }
+
+      /* アクセントテキスト */
+      .accent-text {
+        font-family: 'Noto Serif JP', serif;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+      }
+
+      /* ナビゲーション */
+      nav {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-weight: 400;
+        font-size: 0.95rem;
+        letter-spacing: 0.05em;
+      }
+
+      /* ボタン */
+      button,
+      .btn {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+      }
+
+      /* フォーム要素 */
+      input,
+      textarea,
+      select {
+        font-family: 'Kiwi Maru', sans-serif;
+        font-weight: 300;
+      }
+
+      label {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-weight: 400;
+        font-size: 0.9rem;
+      }
+
+      /* カード内のテキスト */
+      .card-title {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-weight: 500;
+      }
+
+      .card-text {
+        font-family: 'Kiwi Maru', sans-serif;
+        font-weight: 300;
+      }
+
+      /* 統計数字 */
+      .stat-number {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-weight: 500;
+        font-size: 2.5rem;
+      }
+
+      .stat-label {
+        font-family: 'Kiwi Maru', sans-serif;
+        font-weight: 300;
+        font-size: 0.875rem;
+      }
+
+      /* ヒーローセクション特別調整 */
+      #home h1 {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-weight: 500;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      #home p {
+        font-family: 'Noto Serif JP', serif;
+        font-weight: 300;
+        font-size: 1.25rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      /* セクションタイトル */
+      section h2 {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-weight: 500;
+        position: relative;
+        padding-bottom: 0.5rem;
+      }
+
+      /* 引用文 */
+      blockquote {
+        font-family: 'Noto Serif JP', serif;
+        font-weight: 300;
+        font-style: italic;
+        letter-spacing: 0.05em;
+      }
+
+      /* フッター */
+      footer {
+        font-family: 'Kiwi Maru', sans-serif;
+        font-weight: 300;
+      }
+
+      footer h3 {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-weight: 400;
+      }
+
+      /* Premium Glass Effect */
+      .glass-premium {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      }
+
+      /* Fade In Observer Animation */
+      .fade-in-observer {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .fade-in-observer.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Timeline Item Animation */
+      .timeline-item {
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .timeline-item.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* レスポンシブ調整 */
+      @media (max-width: 768px) {
+        body {
+          font-size: 0.95rem;
+        }
+
+        h1 {
+          font-weight: 400;
+        }
+
+        h2 {
+          font-weight: 400;
+        }
+      }
+
+      /* ===================================
+           カスタムスタイル
+           =================================== */
+
+      .wave-animation {
+        animation: wave 3s ease-in-out infinite;
+      }
+      @keyframes wave {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .glassmorphism {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #005a9c 0%, #4a90e2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Particles Container */
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+
+      /* ===================================
+           オーロラウェーブエフェクト
+           =================================== */
+      .aurora-wave-text {
+        position: relative;
+        display: inline-block;
+        color: white;
+        font-weight: 500;
+        background-image: linear-gradient(
+          90deg,
+          white 0%,
+          white 40%,
+          #00ffff 42%,
+          #ff00ff 44%,
+          #ffff00 46%,
+          #ff00aa 48%,
+          #00ff00 50%,
+          #0099ff 52%,
+          #ff0066 54%,
+          white 56%,
+          white 100%
+        );
+        background-size: 200% 100%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: aurora-sweep 8s linear infinite;
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+      }
+
+      @keyframes aurora-sweep {
+        0% {
+          background-position: 100% 0;
+        }
+        100% {
+          background-position: -100% 0;
+        }
+      }
+
+      /* オーロラの輝きエフェクト */
+      .aurora-wave-text::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        color: white;
+        filter: blur(3px);
+        opacity: 0.8;
+      }
+
+      /* 追加のグロウエフェクト */
+      .aurora-wave-text::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 255, 255, 0.2) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+        animation: pulse-glow 3s ease-in-out infinite;
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          opacity: 0.5;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+      }
+
+      /* 右から左へ流れるオーロラウェーブエフェクト */
+      .aurora-wave-text-reverse {
+        position: relative;
+        display: inline-block;
+        color: white;
+        font-weight: 500;
+        background-image: linear-gradient(
+          -90deg,
+          white 0%,
+          white 40%,
+          #00ffff 42%,
+          #ff00ff 44%,
+          #ffff00 46%,
+          #00ff00 48%,
+          #ff00ff 50%,
+          #00ffff 52%,
+          white 54%,
+          white 100%
+        );
+        background-size: 250% 100%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: aurora-wave-reverse 8s linear infinite;
+      }
+
+      @keyframes aurora-wave-reverse {
+        0% {
+          background-position: -150% 0;
+        }
+        100% {
+          background-position: 100% 0;
+        }
+      }
+
+      .aurora-wave-text-reverse::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        color: white;
+        filter: blur(3px);
+        opacity: 0.8;
+      }
+
+      .aurora-wave-text-reverse::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 255, 255, 0.2) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+        animation: pulse-glow 3s ease-in-out infinite;
+      }
+
+      /* ===================================
+           カウンターアニメーション
+           =================================== */
+      @keyframes countUp {
+        from {
+          opacity: 0;
+          transform: scale(0.5) rotateX(90deg);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) rotateX(0deg);
+        }
+      }
+
+      .counter-animation {
+        display: inline-block;
+        animation: countUp 0.5s ease-out forwards;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
+
+      /* カウンターの数字が変わる時のエフェクト */
+      .stat-number {
+        position: relative;
+        display: inline-block;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.02em;
+      }
+
+      .stat-number::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 120%;
+        height: 120%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 119, 190, 0.3) 0%,
+          transparent 70%
+        );
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: 50%;
+        pointer-events: none;
+        transition: transform 0.6s ease-out;
+      }
+
+      .stat-number.counting::before {
+        animation: pulseGlow 1s ease-out;
+      }
+
+      @keyframes pulseGlow {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(2);
+          opacity: 0;
+        }
+      }
+
+      /* 数字がロールする効果 */
+      .number-roller {
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        height: 1.2em;
+        vertical-align: middle;
+      }
+
+      .number-roller-digit {
+        display: inline-block;
+        position: relative;
+        animation: rollNumber 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+
+      @keyframes rollNumber {
+        0% {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* ===================================
+           最適化された波アニメーション背景
+           =================================== */
+      .wave-flow-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: linear-gradient(to bottom, #005a9c, #003d6b);
+      }
+
+      .wave-flow-background::before {
+        content: '';
+        position: absolute;
+        width: 200%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-image: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(135, 206, 235, 0.15) 15%,
+          rgba(255, 255, 255, 0.1) 30%,
+          rgba(135, 206, 235, 0.15) 45%,
+          transparent 60%,
+          rgba(74, 144, 226, 0.1) 75%,
+          rgba(255, 255, 255, 0.05) 85%,
+          transparent 100%
+        );
+        animation: wave-flow 25s linear infinite;
+        will-change: transform;
+      }
+
+      @keyframes wave-flow {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* パフォーマンス最適化：アニメーション制御 */
+      @media (prefers-reduced-motion: reduce) {
+        .wave-flow-background::before,
+        .wave-animation,
+        #particles-js {
+          animation: none !important;
+        }
+      }
+
+      /* ビューポート外でのアニメーション停止用クラス */
+      .animation-paused .wave-flow-background::before {
+        animation-play-state: paused;
+      }
+
+      /* ===================================
+           レスポンシブメニューの明示的な制御
+           =================================== */
+      @media (max-width: 1023px) {
+        #desktop-menu {
+          display: none !important;
+        }
+        #mobile-menu-button {
+          display: block !important;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        #desktop-menu {
+          display: flex !important;
+        }
+        #mobile-menu-button {
+          display: none !important;
+        }
+        #mobile-menu {
+          display: none !important;
+        }
+      }
+
+      /* ===================================
+           3D Card効果用の追加スタイル
+           =================================== */
+
+      /* 3D Card効果 */
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+
+      .card-3d {
+        transform-style: preserve-3d;
+        transition: transform 0.6s;
+      }
+
+      /* フロートアニメーション */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0);
+        }
+        25% {
+          transform: translateY(-20px) translateX(10px);
+        }
+        50% {
+          transform: translateY(-10px) translateX(-10px);
+        }
+        75% {
+          transform: translateY(-30px) translateX(5px);
+        }
+      }
+
+      .animate-float {
+        animation: float 15s ease-in-out infinite;
+      }
+
+      /* Tilt.js グレア効果のカスタマイズ */
+      .js-tilt-glare {
+        border-radius: 1rem;
+      }
+
+      /* ===================================
+           モーダルスタイル
+           =================================== */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      .modal.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-content {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        margin: auto;
+        padding: 0;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 700px;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: slideUp 0.4s ease-out;
+        position: relative;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .modal-header {
+        background: linear-gradient(135deg, #005a9c 0%, #0077be 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 20px 20px 0 0;
+        position: relative;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .modal-close:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: rotate(90deg);
+      }
+
+      .modal-body {
+        padding: 2rem;
+      }
+
+      .modal-meta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
+        border-radius: 15px;
+      }
+
+      .modal-meta-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .modal-meta-label {
+        font-size: 0.875rem;
+        color: #666;
+        margin-bottom: 0.25rem;
+        font-weight: 500;
+      }
+
+      .modal-meta-value {
+        font-size: 1rem;
+        color: #333;
+        font-weight: 600;
+      }
+
+      .modal-description {
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 1.5rem;
+      }
+
+      .modal-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .modal-tag {
+        background: linear-gradient(135deg, #4dd0e1 0%, #26a69a 100%);
+        color: white;
+        padding: 0.375rem 1rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      /* ポートフォリオアイテムにカーソルポインタを追加 */
+      .portfolio-item {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body class="font-kiwi text-gray-800 bg-sand-white">
+    <!-- ナビゲーションバー -->
+    <nav class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+      <div class="px-4 lg:px-12">
+        <div class="flex justify-between items-center py-4">
+          <div class="text-2xl font-zen font-medium gradient-text">
+            本岡紗代
+          </div>
+
+          <!-- デスクトップメニュー -->
+          <div id="desktop-menu" class="hidden lg:flex space-x-8">
+            <a
+              href="#home"
+              class="text-gray-700 hover:text-ocean-cobalt transition-colors"
+              >ホーム</a
+            >
+            <a
+              href="#about"
+              class="text-gray-700 hover:text-ocean-cobalt transition-colors"
+              >プロフィール</a
+            >
+            <a
+              href="#expertise"
+              class="text-gray-700 hover:text-ocean-cobalt transition-colors"
+              >専門分野</a
+            >
+            <a
+              href="#portfolio"
+              class="text-gray-700 hover:text-ocean-cobalt transition-colors"
+              >ポートフォリオ</a
+            >
+            <a
+              href="#skills"
+              class="text-gray-700 hover:text-ocean-cobalt transition-colors"
+              >サービス</a
+            >
+            <a
+              href="#contact"
+              class="text-gray-700 hover:text-ocean-cobalt transition-colors"
+              >お問い合わせ</a
+            >
+          </div>
+
+          <!-- モバイルメニューボタン -->
+          <button id="mobile-menu-button" class="lg:hidden">
+            <i class="fas fa-bars text-2xl text-gray-700"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- モバイルメニュー -->
+      <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
+        <div class="px-4 py-2 space-y-2">
+          <a
+            href="#home"
+            class="block py-2 text-gray-700 hover:text-ocean-cobalt"
+            >ホーム</a
+          >
+          <a
+            href="#about"
+            class="block py-2 text-gray-700 hover:text-ocean-cobalt"
+            >プロフィール</a
+          >
+          <a
+            href="#expertise"
+            class="block py-2 text-gray-700 hover:text-ocean-cobalt"
+            >専門分野</a
+          >
+          <a
+            href="#portfolio"
+            class="block py-2 text-gray-700 hover:text-ocean-cobalt"
+            >ポートフォリオ</a
+          >
+          <a
+            href="#skills"
+            class="block py-2 text-gray-700 hover:text-ocean-cobalt"
+            >サービス</a
+          >
+          <a
+            href="#contact"
+            class="block py-2 text-gray-700 hover:text-ocean-cobalt"
+            >お問い合わせ</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <section
+      id="home"
+      class="relative h-screen flex items-center justify-center overflow-hidden"
+    >
+      <!-- 最適化された波アニメーション背景 -->
+      <div class="wave-flow-background"></div>
+
+      <!-- パーティクル背景 -->
+      <div id="particles-js"></div>
+
+      <!-- オーバーレイ -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-transparent to-black/50"
+      ></div>
+
+      <!-- コンテンツ -->
+      <div class="relative z-10 text-center text-white px-4">
+        <h1
+          class="text-4xl md:text-6xl font-zen font-medium mb-6"
+          data-aos="fade-up"
+        >
+          <span class="aurora-wave-text" data-text="空気と心を言葉に変える"
+            >空気と心を言葉に変える</span
+          >
+        </h1>
+        <p
+          class="text-xl md:text-2xl mb-3 font-noto-serif font-light"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <span
+            class="aurora-wave-text-reverse"
+            data-text="人も、場所も、香りも、味も"
+            >人も、場所も、香りも、味も</span
+          ><br />
+          <span
+            class="aurora-wave-text-reverse"
+            data-text="私は、時間を超えた記憶を分かち合いたい"
+            >私は、時間を超えた記憶を分かち合いたい</span
+          >
+        </p>
+        <p
+          class="text-base md:text-lg mb-8 font-noto-serif font-light"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          ～地元の魅力を世界へ発信～
+        </p>
+        <a
+          href="#contact"
+          class="inline-block px-8 py-3 glass-premium text-white rounded-full transition-all duration-300 transform hover:scale-105 group overflow-hidden relative"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          <span class="relative z-10">お問い合わせはこちら</span>
+          <span
+            class="absolute inset-0 bg-gradient-to-r from-coral-pink to-sunset-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+          ></span>
+        </a>
+      </div>
+
+      <!-- 波のアニメーション -->
+      <!-- <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 120" class="w-full wave-animation">
+                <path fill="#FAFAFA" d="M0,40 C150,80 350,0 600,40 C850,80 1050,0 1300,40 C1370,50 1410,70 1440,50 L1440,120 L0,120 Z"></path>
+            </svg>
+        </div> -->
+    </section>
+
+    <!-- About セクション -->
+    <section id="about" class="mt-10 py-20 bg-sand-white relative">
+      <!-- 上部の波 -->
+      <div
+        class="absolute top-0 left-0 right-0 transform -translate-y-1/2 drop-shadow-lg"
+      >
+        <svg viewBox="0 0 1440 120" class="w-full wave-animation">
+          <defs>
+            <filter id="waveShadow">
+              <feDropShadow
+                dx="0"
+                dy="-5"
+                stdDeviation="10"
+                flood-opacity="0.15"
+              />
+            </filter>
+          </defs>
+          <path
+            fill="#FAFAFA"
+            filter="url(#waveShadow)"
+            d="M0,80 C150,40 350,120 600,80 C850,40 1050,120 1300,80 C1370,70 1410,70 1440,70 L1440,0 L0,0 Z"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-4xl font-zen font-medium text-center mb-12 gradient-text"
+          data-aos="fade-up"
+        >
+          プロフィール
+        </h2>
+
+        <div
+          class="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto"
+        >
+          <!-- プロフィール画像 -->
+          <div class="flex-shrink-0" data-aos="fade-right">
+            <div
+              class="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden shadow-2xl border-4 border-white"
+            >
+              <img
+                src="https://via.placeholder.com/200x200/87CEEB/FFFFFF?text=Profile"
+                alt="本岡紗代"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          <!-- 自己紹介テキスト -->
+          <div class="flex-1 text-center md:text-left" data-aos="fade-left">
+            <h3 class="text-2xl font-zen font-medium mb-4 text-cobalt-blue">
+              本岡紗代
+            </h3>
+            <p class="text-gray-700 mb-6 leading-relaxed font-kiwi font-light">
+              言葉の力で、検索しても出てこなかった物語を届けたい。<br />
+              言葉は、ただの文字の羅列ではなく、人の心をつくる源ではないかと思っています。<br />
+              <br />
+              芸能ニュースは一瞬で調べられるのに、生まれ育った町の記憶や、なじみのお店、<br />
+              近所の素敵なあの人の話は、なかなか見つからない。<br />
+              <br />
+              でも、半ばあきらめ気味でふと検索してみたら、案外ヒットした！<br />
+              そんな驚きと、ちょっとした温かさを感じてもらえたら嬉しい。<br />
+              それが、私の文屋としてのいちばんのやりがいです。<br />
+              <br />
+              これまで、地域密着の取材記事やインタビューを中心に、<br />
+              観光・飲食・暮らし・IT・リフォーム関係など、多彩なジャンルの執筆を重ねてきました。<br />
+              <br />
+              これまでの制作実績はこのページの下部に掲載しておりますので、ご覧いただければ幸いです。<br />
+              <br />
+              一つひとつの言葉の温度やノリをたいせつに。<br />
+              誰かの心に、そっと残る文章を綴りたい。<br />
+              たとえ、それが"ほかの誰かにとっては無駄な言葉"だったとしても。
+            </p>
+
+            <!-- 統計カウンター -->
+            <div class="grid grid-cols-3 gap-4 mt-8">
+              <!-- <div class="text-center">
+                            <div class="text-3xl font-zen font-medium text-ocean-cobalt stat-number" data-target="50" data-suffix="+">0</div>
+                            <div class="text-sm text-gray-600 font-kiwi font-light stat-label">訪問した離島</div>
+                        </div> -->
+              <div class="text-center">
+                <div
+                  class="text-3xl font-zen font-medium text-ocean-cobalt stat-number"
+                  data-target="500"
+                  data-suffix="+"
+                >
+                  0
+                </div>
+                <div
+                  class="text-sm text-gray-600 font-kiwi font-light stat-label"
+                >
+                  執筆記事数
+                </div>
+              </div>
+              <div class="text-center">
+                <div
+                  class="text-3xl font-zen font-medium text-ocean-cobalt stat-number"
+                  data-target="20"
+                  data-suffix="+"
+                >
+                  0
+                </div>
+                <div
+                  class="text-sm text-gray-600 font-kiwi font-light stat-label"
+                >
+                  掲載メディア
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expertise Section with 3D Cards -->
+    <section
+      id="expertise"
+      class="py-20 bg-gradient-to-br from-sea-foam to-sand-white relative overflow-hidden"
+    >
+      <!-- Animated Background Elements -->
+      <div
+        class="absolute top-0 left-0 w-64 h-64 bg-ocean-cobalt/10 rounded-full filter blur-3xl animate-float"
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 w-96 h-96 bg-coral-pink/10 rounded-full filter blur-3xl animate-float"
+        style="animation-delay: 3s"
+      ></div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <h2
+          class="text-4xl font-zen font-medium text-center mb-12 fade-in-observer"
+          data-aos="fade-up"
+        >
+          <span class="gradient-text">専門分野</span>
+        </h2>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+        >
+          <!-- Card 1: インタビュー -->
+          <div
+            class="group perspective-1000"
+            data-tilt
+            data-tilt-glare
+            data-tilt-max-glare="0.5"
+            data-aos="fade-up"
+          >
+            <div
+              class="relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:scale-105 card-3d overflow-hidden hover:shadow-xl border-2 border-transparent hover:border-ocean-cobalt"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-sunset-gold/0 to-sunset-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              ></div>
+
+              <div
+                class="relative text-5xl text-sunset-gold mb-6 text-center transform group-hover:scale-110 transition-transform duration-500"
+              >
+                <i class="fas fa-users"></i>
+              </div>
+
+              <h3
+                class="text-xl font-zen font-medium mb-4 text-center relative z-10"
+              >
+                インタビュー
+              </h3>
+              <p
+                class="text-gray-700 text-center font-kiwi font-light relative z-10"
+              >
+                地域で活躍する人々の声を丁寧に拾い上げ、その想いを読者に届けます。人と人をつなぐ記事作りを心がけています。
+              </p>
+
+              <div
+                class="absolute inset-0 border-2 border-sunset-gold rounded-2xl opacity-0 group-hover:opacity-100 transform scale-110 group-hover:scale-100 transition-all duration-500"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Card 2: 食レポ記事 -->
+          <div
+            class="group perspective-1000"
+            data-tilt
+            data-tilt-glare
+            data-tilt-max-glare="0.5"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div
+              class="relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:scale-105 card-3d overflow-hidden hover:shadow-xl border-2 border-transparent hover:border-ocean-cobalt"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-coral-pink/0 to-coral-pink/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              ></div>
+
+              <div
+                class="relative text-5xl text-coral-pink mb-6 text-center transform group-hover:scale-110 transition-transform duration-500"
+              >
+                <i class="fas fa-utensils"></i>
+              </div>
+
+              <h3
+                class="text-xl font-zen font-medium mb-4 text-center relative z-10"
+              >
+                食レポ記事
+              </h3>
+              <p
+                class="text-gray-700 text-center font-kiwi font-light relative z-10"
+              >
+                味覚だけでなく、香りや食感、調理法まで丁寧に表現。読者が実際に味わっているかのような臨場感ある記事を執筆します。
+              </p>
+
+              <div
+                class="absolute inset-0 border-2 border-coral-pink rounded-2xl opacity-0 group-hover:opacity-100 transform scale-110 group-hover:scale-100 transition-all duration-500"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Card 3: 観光ガイド記事 -->
+          <div
+            class="group perspective-1000"
+            data-tilt
+            data-tilt-glare
+            data-tilt-max-glare="0.5"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div
+              class="relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:scale-105 card-3d overflow-hidden hover:shadow-xl border-2 border-transparent hover:border-ocean-cobalt"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-ocean-cobalt/0 to-ocean-cobalt/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              ></div>
+
+              <div
+                class="relative text-5xl text-ocean-cobalt mb-6 text-center transform group-hover:scale-110 transition-transform duration-500"
+              >
+                <i class="fas fa-map-marked-alt"></i>
+              </div>
+
+              <h3
+                class="text-xl font-zen font-medium mb-4 text-center relative z-10"
+              >
+                観光ガイド記事
+              </h3>
+              <p
+                class="text-gray-700 text-center font-kiwi font-light relative z-10"
+              >
+                観光スポットから隠れた名所まで、旅行者の心を掴むガイド記事を執筆。実体験に基づいた生きた情報をお届けします。
+              </p>
+
+              <div
+                class="absolute inset-0 border-2 border-ocean-cobalt rounded-2xl opacity-0 group-hover:opacity-100 transform scale-110 group-hover:scale-100 transition-all duration-500"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Card 4: SEO -->
+          <div
+            class="group perspective-1000"
+            data-tilt
+            data-tilt-glare
+            data-tilt-max-glare="0.5"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div
+              class="relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:scale-105 card-3d overflow-hidden hover:shadow-xl border-2 border-transparent hover:border-ocean-cobalt"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-seaweed-green/0 to-seaweed-green/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              ></div>
+
+              <div
+                class="relative text-5xl text-seaweed-green mb-6 text-center transform group-hover:scale-110 transition-transform duration-500"
+              >
+                <i class="fas fa-chart-line"></i>
+              </div>
+
+              <h3
+                class="text-xl font-zen font-medium mb-4 text-center relative z-10"
+              >
+                SEO
+              </h3>
+              <p
+                class="text-gray-700 text-center font-kiwi font-light relative z-10"
+              >
+                検索意図を捉えたキーワード選定と、読者に価値を提供する記事構成で、検索上位表示を実現。効果的なSEO対策を提供します。
+              </p>
+
+              <div
+                class="absolute inset-0 border-2 border-seaweed-green rounded-2xl opacity-0 group-hover:opacity-100 transform scale-110 group-hover:scale-100 transition-all duration-500"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Card 5: 編集・構成 -->
+          <div
+            class="group perspective-1000"
+            data-tilt
+            data-tilt-glare
+            data-tilt-max-glare="0.5"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div
+              class="relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:scale-105 card-3d overflow-hidden hover:shadow-xl border-2 border-transparent hover:border-ocean-cobalt"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-aurora-purple/0 to-aurora-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              ></div>
+
+              <div
+                class="relative text-5xl text-aurora-purple mb-6 text-center transform group-hover:scale-110 transition-transform duration-500"
+              >
+                <i class="fas fa-edit"></i>
+              </div>
+
+              <h3
+                class="text-xl font-zen font-medium mb-4 text-center relative z-10"
+              >
+                編集・構成
+              </h3>
+              <p
+                class="text-gray-700 text-center font-kiwi font-light relative z-10"
+              >
+                読みやすい文章構成と適切な見出し設定で、最後まで読まれる記事を作成。校正・推敲も含めたトータルサポートが可能です。
+              </p>
+
+              <div
+                class="absolute inset-0 border-2 border-aurora-purple rounded-2xl opacity-0 group-hover:opacity-100 transform scale-110 group-hover:scale-100 transition-all duration-500"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Card 6: 写真 -->
+          <div
+            class="group perspective-1000"
+            data-tilt
+            data-tilt-glare
+            data-tilt-max-glare="0.5"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <div
+              class="relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:scale-105 card-3d overflow-hidden hover:shadow-xl border-2 border-transparent hover:border-ocean-cobalt"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-aurora-teal/0 to-aurora-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              ></div>
+
+              <div
+                class="relative text-5xl text-aurora-teal mb-6 text-center transform group-hover:scale-110 transition-transform duration-500"
+              >
+                <i class="fas fa-camera"></i>
+              </div>
+
+              <h3
+                class="text-xl font-zen font-medium mb-4 text-center relative z-10"
+              >
+                写真
+              </h3>
+              <p
+                class="text-gray-700 text-center font-kiwi font-light relative z-10"
+              >
+                取材時の写真撮影も対応可能。記事を彩る魅力的な写真で、読者により強い印象を与えるコンテンツを提供します。
+              </p>
+
+              <div
+                class="absolute inset-0 border-2 border-aurora-teal rounded-2xl opacity-0 group-hover:opacity-100 transform scale-110 group-hover:scale-100 transition-all duration-500"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ポートフォリオギャラリー -->
+    <section id="portfolio" class="py-20 bg-sand-white">
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-4xl font-zen font-medium text-center mb-12 gradient-text"
+          data-aos="fade-up"
+        >
+          ポートフォリオ
+        </h2>
+
+        <!-- フィルターボタン -->
+        <div
+          class="flex flex-wrap justify-center gap-4 mb-12"
+          data-aos="fade-up"
+        >
+          <button
+            class="filter-btn active px-6 py-2 rounded-full bg-ocean-cobalt text-white hover:bg-deep-cobalt transition-colors font-zen font-medium"
+            data-filter="all"
+          >
+            すべて
+          </button>
+          <button
+            class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-ocean-cobalt hover:text-white transition-colors font-zen font-medium"
+            data-filter="magazine"
+          >
+            雑誌媒体
+          </button>
+          <button
+            class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-ocean-cobalt hover:text-white transition-colors font-zen font-medium"
+            data-filter="web"
+          >
+            Web媒体
+          </button>
+        </div>
+
+        <!-- ポートフォリオグリッド -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+        >
+          <!-- ポートフォリオアイテム1 (雑誌媒体) -->
+          <div
+            class="portfolio-item relative overflow-hidden rounded-lg shadow-lg group"
+            data-category="magazine"
+            data-aos="zoom-in"
+            data-portfolio-id="koujirai"
+          >
+            <img
+              src="https://via.placeholder.com/400x300/87CEEB/FFFFFF?text=月刊KOUJIRAI"
+              alt="月刊KOUJIRAI"
+              class="w-full h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <div class="text-white">
+                <h3 class="text-xl font-zen font-medium mb-2">月刊KOUJIRAI</h3>
+                <p class="text-sm font-kiwi font-light">
+                  地元密着型フリーペーパー
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ポートフォリオアイテム2 (Web媒体) -->
+          <div
+            class="portfolio-item relative overflow-hidden rounded-lg shadow-lg group"
+            data-category="web"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+            data-portfolio-id="hyogo1000"
+          >
+            <img
+              src="https://via.placeholder.com/400x300/FFD700/FFFFFF?text=1000％兵庫"
+              alt="1000％兵庫"
+              class="w-full h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <div class="text-white">
+                <h3 class="text-xl font-zen font-medium mb-2">1000％兵庫</h3>
+                <p class="text-sm font-kiwi font-light">
+                  兵庫県の食を紹介するWebサイト
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ポートフォリオアイテム3 (雑誌媒体) -->
+          <div
+            class="portfolio-item relative overflow-hidden rounded-lg shadow-lg group"
+            data-category="magazine"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+            data-portfolio-id="mapple"
+          >
+            <img
+              src="https://via.placeholder.com/400x300/FF6B6B/FFFFFF?text=まっぷる"
+              alt="まっぷるシリーズ"
+              class="w-full h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <div class="text-white">
+                <h3 class="text-xl font-zen font-medium mb-2">
+                  まっぷるシリーズ
+                </h3>
+                <p class="text-sm font-kiwi font-light">観光ガイドブック制作</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ポートフォリオアイテム4 (Web媒体) -->
+          <div
+            class="portfolio-item relative overflow-hidden rounded-lg shadow-lg group"
+            data-category="web"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+            data-portfolio-id="kobe-fashion"
+          >
+            <img
+              src="https://via.placeholder.com/400x300/26A69A/FFFFFF?text=神戸ファッション"
+              alt="神戸ファッションマガジン"
+              class="w-full h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <div class="text-white">
+                <h3 class="text-xl font-zen font-medium mb-2">
+                  神戸ファッションマガジン
+                </h3>
+                <p class="text-sm font-kiwi font-light">Facebook記事制作</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ポートフォリオアイテム5 (雑誌媒体) -->
+          <div
+            class="portfolio-item relative overflow-hidden rounded-lg shadow-lg group"
+            data-category="magazine"
+            data-aos="zoom-in"
+            data-aos-delay="400"
+            data-portfolio-id="arukikata"
+          >
+            <img
+              src="https://via.placeholder.com/400x300/4A90E2/FFFFFF?text=地球の歩き方"
+              alt="地球の歩き方"
+              class="w-full h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <div class="text-white">
+                <h3 class="text-xl font-zen font-medium mb-2">地球の歩き方</h3>
+                <p class="text-sm font-kiwi font-light">
+                  書籍制作・ライティング
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ポートフォリオアイテム6 (Web媒体) -->
+          <div
+            class="portfolio-item relative overflow-hidden rounded-lg shadow-lg group"
+            data-category="web"
+            data-aos="zoom-in"
+            data-aos-delay="500"
+            data-portfolio-id="kobe-dream"
+          >
+            <img
+              src="https://via.placeholder.com/400x300/E0F2F1/333333?text=KOBEドリームキャッチ"
+              alt="KOBEドリームキャッチプロジェクト"
+              class="w-full h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <div class="text-white">
+                <h3 class="text-xl font-zen font-medium mb-2">
+                  KOBEドリームキャッチ
+                </h3>
+                <p class="text-sm font-kiwi font-light">中小企業応援サイト</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ポートフォリオアイテム7 (Web媒体) -->
+          <div
+            class="portfolio-item relative overflow-hidden rounded-lg shadow-lg group"
+            data-category="web"
+            data-aos="zoom-in"
+            data-aos-delay="600"
+            data-portfolio-id="mapple-web"
+          >
+            <img
+              src="https://via.placeholder.com/400x300/9C27B0/FFFFFF?text=まっぷるWEB"
+              alt="まっぷるWEB"
+              class="w-full h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <div class="text-white">
+                <h3 class="text-xl font-zen font-medium mb-2">まっぷるWEB</h3>
+                <p class="text-sm font-kiwi font-light">SEO対策記事制作</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ポートフォリオアイテム8 (Web媒体) -->
+          <div
+            class="portfolio-item relative overflow-hidden rounded-lg shadow-lg group"
+            data-category="web"
+            data-aos="zoom-in"
+            data-aos-delay="700"
+            data-portfolio-id="lancers"
+          >
+            <img
+              src="https://via.placeholder.com/400x300/F44336/FFFFFF?text=LANCERS"
+              alt="LANCERSでのSEO記事"
+              class="w-full h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <div class="text-white">
+                <h3 class="text-xl font-zen font-medium mb-2">
+                  LANCERS SEO記事
+                </h3>
+                <p class="text-sm font-kiwi font-light">
+                  リフォーム・建築関連記事
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ポートフォリオアイテム9 (Web媒体) -->
+          <div
+            class="portfolio-item relative overflow-hidden rounded-lg shadow-lg group"
+            data-category="web"
+            data-aos="zoom-in"
+            data-aos-delay="800"
+            data-portfolio-id="yahoo-news"
+          >
+            <img
+              src="https://via.placeholder.com/400x300/00BCD4/FFFFFF?text=YAHOO!ニュース"
+              alt="YAHOO!ニュース"
+              class="w-full h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <div class="text-white">
+                <h3 class="text-xl font-zen font-medium mb-2">
+                  YAHOO!ニュース
+                </h3>
+                <p class="text-sm font-kiwi font-light">飯田市情報記事</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 実績スライダー -->
+    <section
+      class="py-20 bg-gradient-to-r from-ocean-cobalt to-cobalt-blue text-white"
+    >
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-4xl font-zen font-medium text-center mb-12"
+          data-aos="fade-up"
+        >
+          掲載実績
+        </h2>
+
+        <!-- Swiper -->
+        <div class="swiper achievements-swiper" data-aos="fade-up">
+          <div class="swiper-wrapper items-center">
+            <div class="swiper-slide text-center">
+              <a
+                href="https://news.yahoo.co.jp/expert/creators/fune"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block bg-white/20 rounded-lg p-8 glassmorphism hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
+              >
+                <h3 class="text-2xl font-zen font-medium mb-2">YAHOO! JAPAN</h3>
+                <p class="font-kiwi font-light">飯田市情報記事</p>
+                <p class="text-sm mt-2 opacity-80">
+                  クリックして記事を見る
+                  <i class="fas fa-external-link-alt ml-1"></i>
+                </p>
+              </a>
+            </div>
+            <div class="swiper-slide text-center">
+              <a
+                href="https://www.mapple.net/original/405501/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block bg-white/20 rounded-lg p-8 glassmorphism hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
+              >
+                <h3 class="text-2xl font-zen font-medium mb-2">まっぷるWEB</h3>
+                <p class="font-kiwi font-light">ジャム特集記事</p>
+                <p class="text-sm mt-2 opacity-80">
+                  クリックして記事を見る
+                  <i class="fas fa-external-link-alt ml-1"></i>
+                </p>
+              </a>
+            </div>
+            <div class="swiper-slide text-center">
+              <a
+                href="https://www.mapple.net/original/394320/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block bg-white/20 rounded-lg p-8 glassmorphism hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
+              >
+                <h3 class="text-2xl font-zen font-medium mb-2">まっぷるWEB</h3>
+                <p class="font-kiwi font-light">お土産特集記事</p>
+                <p class="text-sm mt-2 opacity-80">
+                  クリックして記事を見る
+                  <i class="fas fa-external-link-alt ml-1"></i>
+                </p>
+              </a>
+            </div>
+            <div class="swiper-slide text-center">
+              <a
+                href="https://www.mapple.net/original/396770/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block bg-white/20 rounded-lg p-8 glassmorphism hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
+              >
+                <h3 class="text-2xl font-zen font-medium mb-2">まっぷるWEB</h3>
+                <p class="font-kiwi font-light">DAISO商品記事</p>
+                <p class="text-sm mt-2 opacity-80">
+                  クリックして記事を見る
+                  <i class="fas fa-external-link-alt ml-1"></i>
+                </p>
+              </a>
+            </div>
+            <div class="swiper-slide text-center">
+              <a
+                href="https://www.facebook.com/kobestylishday"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block bg-white/20 rounded-lg p-8 glassmorphism hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
+              >
+                <h3 class="text-2xl font-zen font-medium mb-2">
+                  神戸スタイリッシュデー
+                </h3>
+                <p class="font-kiwi font-light">Facebook記事</p>
+                <p class="text-sm mt-2 opacity-80">
+                  クリックして記事を見る
+                  <i class="fas fa-external-link-alt ml-1"></i>
+                </p>
+              </a>
+            </div>
+            <div class="swiper-slide text-center">
+              <a
+                href="https://www.youtube.com/watch?v=2185d1s0XSM"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block bg-white/20 rounded-lg p-8 glassmorphism hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
+              >
+                <h3 class="text-2xl font-zen font-medium mb-2">
+                  KOBEドリームキャッチ
+                </h3>
+                <p class="font-kiwi font-light">YouTube動画</p>
+                <p class="text-sm mt-2 opacity-80">
+                  クリックして動画を見る
+                  <i class="fas fa-external-link-alt ml-1"></i>
+                </p>
+              </a>
+            </div>
+            <div class="swiper-slide text-center">
+              <a
+                href="https://www.town-life.jp/reform/important/galvalume-roof-renovation/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block bg-white/20 rounded-lg p-8 glassmorphism hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
+              >
+                <h3 class="text-2xl font-zen font-medium mb-2">タウンライフ</h3>
+                <p class="font-kiwi font-light">トタン屋根記事</p>
+                <p class="text-sm mt-2 opacity-80">
+                  クリックして記事を見る
+                  <i class="fas fa-external-link-alt ml-1"></i>
+                </p>
+              </a>
+            </div>
+            <div class="swiper-slide text-center">
+              <a
+                href="https://hanarejima.com/shimazukan-ogizima/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block bg-white/20 rounded-lg p-8 glassmorphism hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
+              >
+                <h3 class="text-2xl font-zen font-medium mb-2">
+                  はなれ島広報部
+                </h3>
+                <p class="font-kiwi font-light">離島記事</p>
+                <p class="text-sm mt-2 opacity-80">
+                  クリックして記事を見る
+                  <i class="fas fa-external-link-alt ml-1"></i>
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills & Services with Interactive Timeline -->
+    <section id="skills" class="py-20 bg-sand-white relative overflow-hidden">
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-4xl font-zen font-medium text-center mb-12 fade-in-observer"
+        >
+          <span class="gradient-text">スキル＆サービス</span>
+        </h2>
+
+        <div class="max-w-4xl mx-auto">
+          <!-- Interactive Timeline -->
+          <div class="relative">
+            <!-- Timeline Line -->
+            <div
+              class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-ocean-cobalt to-coral-pink"
+            ></div>
+
+            <!-- Skill 1 -->
+            <div class="relative flex items-center mb-16 timeline-item">
+              <div class="w-1/2 pr-8 text-right fade-in-observer">
+                <div
+                  class="glass-premium rounded-2xl p-6 transform hover:scale-105 transition-all duration-300"
+                >
+                  <h3 class="text-xl font-zen font-medium mb-2">
+                    取材・インタビュー
+                  </h3>
+                  <p class="text-gray-700 font-kiwi font-light">
+                    丁寧な事前準備と傾聴力で、相手の本音を引き出します
+                  </p>
+                </div>
+              </div>
+              <div
+                class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-r from-coral-pink to-sunset-gold rounded-full border-4 border-white flex items-center justify-center shadow-lg"
+              >
+                <i class="fas fa-microphone text-white"></i>
+              </div>
+              <div class="w-1/2 pl-8"></div>
+            </div>
+
+            <!-- Skill 2 -->
+            <div class="relative flex items-center mb-16 timeline-item">
+              <div class="w-1/2 pr-8"></div>
+              <div
+                class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-r from-ocean-cobalt to-light-cobalt rounded-full border-4 border-white flex items-center justify-center shadow-lg"
+              >
+                <i class="fas fa-pen-fancy text-white"></i>
+              </div>
+              <div class="w-1/2 pl-8 fade-in-observer">
+                <div
+                  class="glass-premium rounded-2xl p-6 transform hover:scale-105 transition-all duration-300"
+                >
+                  <h3 class="text-xl font-zen font-medium mb-2">
+                    SEOライティング
+                  </h3>
+                  <p class="text-gray-700 font-kiwi font-light">
+                    検索上位を狙える質の高い記事を執筆します
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Skill 3 -->
+            <div class="relative flex items-center mb-16 timeline-item">
+              <div class="w-1/2 pr-8 text-right fade-in-observer">
+                <div
+                  class="glass-premium rounded-2xl p-6 transform hover:scale-105 transition-all duration-300"
+                >
+                  <h3 class="text-xl font-zen font-medium mb-2">写真撮影</h3>
+                  <p class="text-gray-700 font-kiwi font-light">
+                    記事に彩りを添える魅力的な写真も提供可能です
+                  </p>
+                </div>
+              </div>
+              <div
+                class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-r from-seaweed-green to-aurora-teal rounded-full border-4 border-white flex items-center justify-center shadow-lg"
+              >
+                <i class="fas fa-camera text-white"></i>
+              </div>
+              <div class="w-1/2 pl-8"></div>
+            </div>
+          </div>
+
+          <!-- Premium Pricing Cards -->
+          <div
+            class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 fade-in-observer"
+          >
+            <!-- Basic Plan -->
+            <div class="relative group" data-tilt data-tilt-max="10">
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-ocean-cobalt to-light-cobalt rounded-2xl transform rotate-6 group-hover:rotate-3 transition-transform duration-300 opacity-20"
+              ></div>
+              <div
+                class="relative bg-white rounded-2xl shadow-xl p-8 text-center transform hover:scale-105 transition-all duration-300"
+              >
+                <h3 class="text-xl font-zen font-medium mb-4 text-ocean-cobalt">
+                  ベーシック
+                </h3>
+                <p class="text-4xl font-zen font-medium mb-4 gradient-text">
+                  ¥30,000~
+                </p>
+                <ul class="text-gray-700 space-y-3 mb-6">
+                  <li class="flex items-center justify-center">
+                    <i class="fas fa-check text-seaweed-green mr-2"></i>
+                    ブログ記事（2000文字）
+                  </li>
+                  <li class="flex items-center justify-center">
+                    <i class="fas fa-check text-seaweed-green mr-2"></i>
+                    簡単な取材
+                  </li>
+                  <li class="flex items-center justify-center">
+                    <i class="fas fa-check text-seaweed-green mr-2"></i>
+                    修正2回まで
+                  </li>
+                </ul>
+                <button
+                  class="w-full py-3 rounded-full border-2 border-ocean-cobalt text-ocean-cobalt hover:bg-ocean-cobalt hover:text-white transition-all duration-300"
+                >
+                  詳細を見る
+                </button>
+              </div>
+            </div>
+
+            <!-- Standard Plan (Featured) -->
+            <div
+              class="relative group transform scale-105"
+              data-tilt
+              data-tilt-max="10"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-coral-pink to-sunset-gold rounded-2xl transform rotate-6 group-hover:rotate-3 transition-transform duration-300 opacity-30"
+              ></div>
+              <div
+                class="relative bg-gradient-to-br from-ocean-cobalt to-cobalt-blue text-white rounded-2xl shadow-2xl p-8 text-center transform hover:scale-105 transition-all duration-300"
+              >
+                <div
+                  class="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-coral-pink rounded-full text-sm"
+                >
+                  人気プラン
+                </div>
+                <h3 class="text-xl font-zen font-medium mb-4 mt-2">
+                  スタンダード
+                </h3>
+                <p class="text-4xl font-zen font-medium mb-4">¥50,000~</p>
+                <ul class="space-y-3 mb-6">
+                  <li class="flex items-center justify-center">
+                    <i class="fas fa-check text-white mr-2"></i>
+                    特集記事（4000文字）
+                  </li>
+                  <li class="flex items-center justify-center">
+                    <i class="fas fa-check text-white mr-2"></i>
+                    現地取材・撮影込み
+                  </li>
+                  <li class="flex items-center justify-center">
+                    <i class="fas fa-check text-white mr-2"></i>
+                    修正3回まで
+                  </li>
+                </ul>
+                <button
+                  class="w-full py-3 rounded-full bg-white text-ocean-cobalt hover:bg-gray-100 transition-all duration-300 font-medium"
+                >
+                  詳細を見る
+                </button>
+              </div>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="relative group" data-tilt data-tilt-max="10">
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-aurora-purple to-aurora-pink rounded-2xl transform rotate-6 group-hover:rotate-3 transition-transform duration-300 opacity-20"
+              ></div>
+              <div
+                class="relative bg-white rounded-2xl shadow-xl p-8 text-center transform hover:scale-105 transition-all duration-300"
+              >
+                <h3 class="text-xl font-zen font-medium mb-4 text-ocean-cobalt">
+                  プレミアム
+                </h3>
+                <p class="text-4xl font-zen font-medium mb-4 gradient-text">
+                  ¥80,000~
+                </p>
+                <ul class="text-gray-700 space-y-3 mb-6">
+                  <li class="flex items-center justify-center">
+                    <i class="fas fa-check text-seaweed-green mr-2"></i>
+                    連載記事（月4本）
+                  </li>
+                  <li class="flex items-center justify-center">
+                    <i class="fas fa-check text-seaweed-green mr-2"></i>
+                    企画提案から実施
+                  </li>
+                  <li class="flex items-center justify-center">
+                    <i class="fas fa-check text-seaweed-green mr-2"></i>
+                    修正無制限
+                  </li>
+                </ul>
+                <button
+                  class="w-full py-3 rounded-full border-2 border-ocean-cobalt text-ocean-cobalt hover:bg-ocean-cobalt hover:text-white transition-all duration-300"
+                >
+                  詳細を見る
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- インスタグラムフィード -->
+    <section class="py-20 bg-sea-foam">
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-4xl font-zen font-medium text-center mb-12 gradient-text"
+          data-aos="fade-up"
+        >
+          Instagram
+        </h2>
+
+        <div
+          class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto"
+          data-aos="fade-up"
+        >
+          <div
+            class="aspect-square overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src="https://via.placeholder.com/300x300/87CEEB/FFFFFF?text=島の風景1"
+              alt="Instagram post"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div
+            class="aspect-square overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src="https://via.placeholder.com/300x300/FFD700/FFFFFF?text=島の風景2"
+              alt="Instagram post"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div
+            class="aspect-square overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src="https://via.placeholder.com/300x300/FF6B6B/FFFFFF?text=島の風景3"
+              alt="Instagram post"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div
+            class="aspect-square overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src="https://via.placeholder.com/300x300/26A69A/FFFFFF?text=島の風景4"
+              alt="Instagram post"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div
+            class="aspect-square overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src="https://via.placeholder.com/300x300/4A90E2/FFFFFF?text=島の風景5"
+              alt="Instagram post"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div
+            class="aspect-square overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src="https://via.placeholder.com/300x300/E0F2F1/333333?text=島の風景6"
+              alt="Instagram post"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        <div class="text-center mt-8">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:shadow-lg transition-all duration-300 font-zen font-medium"
+          >
+            <i class="fab fa-instagram"></i>
+            フォローする
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ポートフォリオ詳細モーダル -->
+    <div id="portfolio-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-close">&times;</span>
+          <h2 id="modal-title" class="text-2xl font-zen font-medium"></h2>
+        </div>
+        <div class="modal-body">
+          <div class="modal-meta" id="modal-meta">
+            <!-- メタ情報がここに動的に挿入されます -->
+          </div>
+          <div class="modal-description" id="modal-description">
+            <!-- 詳細説明がここに動的に挿入されます -->
+          </div>
+          <div class="modal-tags" id="modal-tags">
+            <!-- タグがここに動的に挿入されます -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- お問い合わせセクション -->
+    <section
+      id="contact"
+      class="py-20 bg-gradient-to-br from-ocean-cobalt via-cobalt-blue to-deep-cobalt text-white"
+    >
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-4xl font-zen font-medium text-center mb-12"
+          data-aos="fade-up"
+        >
+          お問い合わせ
+        </h2>
+
+        <div class="max-w-2xl mx-auto">
+          <form class="glassmorphism rounded-lg p-8" data-aos="fade-up">
+            <div class="mb-6">
+              <label class="block mb-2">お名前</label>
+              <input
+                type="text"
+                class="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-coral-pink placeholder-white/70 text-white"
+                placeholder="山田太郎"
+              />
+            </div>
+
+            <div class="mb-6">
+              <label class="block mb-2">メールアドレス</label>
+              <input
+                type="email"
+                class="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-coral-pink placeholder-white/70 text-white"
+                placeholder="example@email.com"
+              />
+            </div>
+
+            <div class="mb-6">
+              <label class="block mb-2">お問い合わせ内容</label>
+              <select
+                class="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-coral-pink text-white [&>option]:bg-gray-800 [&>option]:text-white"
+              >
+                <option value="">選択してください</option>
+                <option value="writing">執筆依頼</option>
+                <option value="interview">取材依頼</option>
+                <option value="other">その他</option>
+              </select>
+            </div>
+
+            <div class="mb-6">
+              <label class="block mb-2">メッセージ</label>
+              <textarea
+                rows="5"
+                class="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-coral-pink placeholder-white/70 text-white"
+                placeholder="お気軽にお問い合わせください"
+              ></textarea>
+            </div>
+
+            <div class="flex justify-center">
+              <button
+                type="submit"
+                class="w-64 py-3 bg-gradient-to-r from-coral-pink to-sunset-gold text-white rounded-lg font-zen font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+              >
+                送信する
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="relative bg-deep-ocean text-white">
+      <!-- 波のSVG -->
+      <div class="absolute top-0 left-0 right-0 transform -translate-y-full">
+        <svg viewBox="0 0 1440 120" class="w-full">
+          <path
+            fill="#1A237E"
+            d="M0,80 C150,40 350,120 600,80 C850,40 1050,120 1300,80 C1370,100 1410,100 1440,110 L1440,120 L0,120 Z"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="container mx-auto px-4 py-12">
+        <div class="flex flex-col items-center">
+          <h3 class="text-2xl font-zen font-medium mb-6">本岡紗代</h3>
+
+          <div class="flex gap-6 mb-8">
+            <a
+              href="#"
+              class="text-3xl hover:text-coral-pink transition-colors hover:scale-110 transform"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="#"
+              class="text-3xl hover:text-coral-pink transition-colors hover:scale-110 transform"
+            >
+              <i class="fab fa-facebook"></i>
+            </a>
+            <!-- <a
+              href="#"
+              class="text-3xl hover:text-coral-pink transition-colors hover:scale-110 transform"
+            >
+              <i class="fab fa-twitter"></i>
+            </a> -->
+          </div>
+
+          <p class="text-sm opacity-70 font-kiwi font-light">
+            &copy; 2025 本岡紗代. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top ボタン -->
+    <button
+      id="back-to-top"
+      class="fixed bottom-8 right-8 w-12 h-12 bg-coral-pink text-white rounded-full shadow-lg hover:bg-red-500 transition-all duration-300 transform hover:scale-110 opacity-0 invisible"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script>
+      // AOS初期化（ポートフォリオセクションは一度だけアニメーション）
+      AOS.init({
+        duration: 1000,
+        once: true, // trueにすることで一度だけアニメーション
+        mirror: false, // スクロールアップ時の再アニメーションを無効化
+      });
+
+      // Swiper初期化（モバイルでは無効化）
+      let swiper = null;
+
+      function initSwiper() {
+        // モバイルサイズ（768px未満）の場合はSwiperを破棄
+        if (window.innerWidth < 768) {
+          if (swiper !== null) {
+            swiper.destroy(true, true);
+            swiper = null;
+          }
+          // モバイル用のスタイルを適用
+          const swiperContainer = document.querySelector(
+            '.achievements-swiper'
+          );
+          const swiperWrapper = document.querySelector(
+            '.achievements-swiper .swiper-wrapper'
+          );
+          const swiperSlides = document.querySelectorAll(
+            '.achievements-swiper .swiper-slide'
+          );
+
+          if (swiperContainer) {
+            swiperContainer.classList.remove('swiper');
+            swiperContainer.style.overflow = 'visible';
+          }
+          if (swiperWrapper) {
+            swiperWrapper.style.display = 'flex';
+            swiperWrapper.style.flexDirection = 'column';
+            swiperWrapper.style.gap = '1rem';
+          }
+          swiperSlides.forEach((slide) => {
+            slide.style.width = '100%';
+            slide.style.marginBottom = '1rem';
+          });
+        } else {
+          // デスクトップサイズの場合はSwiperを初期化
+          if (swiper === null) {
+            const swiperContainer = document.querySelector(
+              '.achievements-swiper'
+            );
+            const swiperWrapper = document.querySelector(
+              '.achievements-swiper .swiper-wrapper'
+            );
+            const swiperSlides = document.querySelectorAll(
+              '.achievements-swiper .swiper-slide'
+            );
+
+            if (swiperContainer) {
+              swiperContainer.classList.add('swiper');
+              swiperContainer.style.overflow = '';
+            }
+            if (swiperWrapper) {
+              swiperWrapper.style.display = '';
+              swiperWrapper.style.flexDirection = '';
+              swiperWrapper.style.gap = '';
+            }
+            swiperSlides.forEach((slide) => {
+              slide.style.width = '';
+              slide.style.marginBottom = '';
+            });
+
+            swiper = new Swiper('.achievements-swiper', {
+              slidesPerView: 1,
+              spaceBetween: 30,
+              loop: true,
+              autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+              },
+              breakpoints: {
+                768: {
+                  slidesPerView: 3,
+                },
+                1024: {
+                  slidesPerView: 4,
+                },
+              },
+            });
+          }
+        }
+      }
+
+      // 初期化
+      initSwiper();
+
+      // ウィンドウリサイズ時に再初期化
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          initSwiper();
+        }, 250);
+      });
+
+      // モバイルメニュー - DOMContentLoaded内で初期化
+      document.addEventListener('DOMContentLoaded', function () {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+          mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+          });
+
+          // モバイルメニューのリンククリックで閉じる
+          const mobileLinks = mobileMenu.querySelectorAll('a');
+          mobileLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+              mobileMenu.classList.add('hidden');
+            });
+          });
+        }
+
+        // ビューポート変更の検出と対応
+        const mediaQuery = window.matchMedia('(min-width: 1024px)');
+
+        function handleViewportChange(e) {
+          if (e.matches && mobileMenu) {
+            // デスクトップビューでモバイルメニューを確実に非表示
+            mobileMenu.classList.add('hidden');
+          }
+
+          // 強制的にリフローを発生させてCSSを再適用
+          requestAnimationFrame(() => {
+            document.body.style.display = 'none';
+            document.body.offsetHeight; // 強制リフロー
+            document.body.style.display = '';
+          });
+        }
+
+        // メディアクエリの変更を監視
+        mediaQuery.addEventListener('change', handleViewportChange);
+
+        // リサイズイベントも監視（念のため）
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => {
+            if (window.innerWidth >= 1024 && mobileMenu) {
+              mobileMenu.classList.add('hidden');
+            }
+          }, 100);
+        });
+      });
+
+      // スムーズスクロール
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }
+        });
+      });
+
+      // Back to Topボタン
+      const backToTopButton = document.getElementById('back-to-top');
+
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.remove('opacity-0', 'invisible');
+          backToTopButton.classList.add('opacity-100', 'visible');
+        } else {
+          backToTopButton.classList.add('opacity-0', 'invisible');
+          backToTopButton.classList.remove('opacity-100', 'visible');
+        }
+      });
+
+      backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      });
+
+      // ポートフォリオフィルター
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+      filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          // アクティブクラスの切り替え
+          filterButtons.forEach((btn) => {
+            btn.classList.remove('active', 'bg-ocean-cobalt', 'text-white');
+            btn.classList.add('bg-gray-200', 'text-gray-700');
+          });
+          button.classList.add('active', 'bg-ocean-cobalt', 'text-white');
+          button.classList.remove('bg-gray-200', 'text-gray-700');
+
+          // フィルタリング
+          const filter = button.getAttribute('data-filter');
+          portfolioItems.forEach((item) => {
+            if (
+              filter === 'all' ||
+              item.getAttribute('data-category') === filter
+            ) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // フォーム送信（仮実装）
+      const contactForm = document.querySelector('#contact form');
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert(
+          'お問い合わせありがとうございます。内容を確認後、ご連絡させていただきます。'
+        );
+        contactForm.reset();
+      });
+
+      // Vanilla Tilt初期化
+      VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
+        max: 25,
+        speed: 400,
+        glare: true,
+        'max-glare': 0.5,
+        perspective: 1000,
+        scale: 1.05,
+      });
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          } else {
+            // 要素が画面外に出たらクラスを削除（再度アニメーション可能に）
+            entry.target.classList.remove('is-visible');
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in-observer elements
+      document.querySelectorAll('.fade-in-observer').forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Observe all timeline-item elements
+      document.querySelectorAll('.timeline-item').forEach((el) => {
+        observer.observe(el);
+      });
+
+      // ヒーローセクションのアニメーション制御
+      const heroSection = document.querySelector('#home');
+      const heroObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              // ビューポート外では波アニメーションを停止
+              heroSection.classList.add('animation-paused');
+            } else {
+              // ビューポート内では波アニメーションを再開
+              heroSection.classList.remove('animation-paused');
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      heroObserver.observe(heroSection);
+
+      // Particles.js初期化（モバイルで数を減らす）
+      const particleConfig = {
+        particles: {
+          number: {
+            value: window.innerWidth < 768 ? 40 : 80, // モバイルでは半分に
+            density: {
+              enable: true,
+              value_area: 800,
+            },
+          },
+          color: {
+            value: '#ffffff',
+          },
+          shape: {
+            type: 'circle',
+          },
+          opacity: {
+            value: 0.3,
+            random: true,
+          },
+          size: {
+            value: 3,
+            random: true,
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#ffffff',
+            opacity: 0.2,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: 'none',
+            random: false,
+            straight: false,
+            out_mode: 'out',
+            bounce: false,
+          },
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: {
+            onhover: {
+              enable: true,
+              mode: 'grab',
+            },
+            onclick: {
+              enable: true,
+              mode: 'push',
+            },
+            resize: true,
+          },
+          modes: {
+            grab: {
+              distance: 140,
+              line_linked: {
+                opacity: 0.5,
+              },
+            },
+            push: {
+              particles_nb: 4,
+            },
+          },
+        },
+        retina_detect: true,
+      };
+
+      particlesJS('particles-js', particleConfig);
+
+      // カウンターアニメーション
+      function animateCounter(element) {
+        const target = parseInt(element.getAttribute('data-target'));
+        const suffix = element.getAttribute('data-suffix') || '';
+        const duration = 2000; // 2秒間でカウントアップ
+        const steps = 60; // 60フレーム
+        const increment = target / steps;
+        let current = 0;
+        let step = 0;
+
+        // カウント中のクラスを追加
+        element.classList.add('counting');
+
+        const updateCounter = () => {
+          step++;
+          current = Math.min(Math.round(increment * step), target);
+
+          // 数字を分解してアニメーション
+          const numberStr = current.toString();
+          let html = '';
+          for (let i = 0; i < numberStr.length; i++) {
+            html += `<span class="number-roller-digit" style="animation-delay: ${
+              i * 50
+            }ms">${numberStr[i]}</span>`;
+          }
+          element.innerHTML = html + suffix;
+
+          if (step < steps && current < target) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            // 最終値を設定
+            element.innerHTML = target + suffix;
+            // パルスエフェクトを追加
+            setTimeout(() => {
+              element.classList.remove('counting');
+            }, 500);
+          }
+        };
+
+        updateCounter();
+      }
+
+      // Intersection Observerでカウンターを監視
+      const counterObserverOptions = {
+        threshold: 0.5,
+        rootMargin: '0px',
+      };
+
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (
+            entry.isIntersecting &&
+            !entry.target.classList.contains('animated')
+          ) {
+            entry.target.classList.add('animated');
+            setTimeout(() => {
+              animateCounter(entry.target);
+            }, 300); // 少し遅延させて注目を集める
+          }
+        });
+      }, counterObserverOptions);
+
+      // すべてのstat-number要素を監視
+      document.querySelectorAll('.stat-number').forEach((counter) => {
+        counterObserver.observe(counter);
+      });
+
+      // ポートフォリオモーダル関連のJavaScript
+      const portfolioModal = document.getElementById('portfolio-modal');
+      const modalClose = document.querySelector('.modal-close');
+      const modalTitle = document.getElementById('modal-title');
+      const modalMeta = document.getElementById('modal-meta');
+      const modalDescription = document.getElementById('modal-description');
+      const modalTags = document.getElementById('modal-tags');
+
+      // ポートフォリオデータ
+      const portfolioData = {
+        koujirai: {
+          title: '月刊KOUJIRAI',
+          meta: {
+            雑誌名: '月刊KOUJIRAI（三重県）',
+            創刊時期: '2011年～2019年ごろ',
+            作業内容: '取材/ライティング/編集',
+            担当: '巻頭誌面',
+          },
+          description: `地元密着型フリーペーパーの巻頭誌面を担当させていただきました。<br><br>
+            月刊KOUJIRAIという三重県を中心に発行されていた紙媒体において、主に地元商店主さんなどへの取材、編集、ライティングを行っていました。<br><br>
+            人材不足の中で編集スキルを学ぶ機会を得られたことは、私にとって大変貴重な経験となりました。<br><br>
+            徐々に信頼を得て、後半では特集記事なども任せていただけるようになり、地域に根ざした記事作りの重要性を深く学びました。`,
+          tags: [
+            '地域密着',
+            'インタビュー',
+            '編集',
+            'フリーペーパー',
+            '三重県',
+          ],
+        },
+        mapple: {
+          title: 'まっぷるシリーズ',
+          meta: {
+            書籍名: "まっぷる熊本'18 / 沖縄'18 / 石川'18",
+            発行時期: '2017年～2018年',
+            作業内容: 'ライティング/校正/構成/電話確認',
+            勤務形態: '編集プロダクション（パート）',
+          },
+          description: `編集プロダクションにて観光ガイドブックのリライトを中心に従事しました。<br><br>
+            ブランクがあったものの、ライターの仕事を続けたいという強い思いから、思い切って編集プロダクションにパートとして入社。観光ガイドブックの制作現場でサポート業務を担当しました。<br><br>
+            大量のリライト作業、現地施設への電話確認、撮影管理業務など、編集現場での実務を通じて、観光ガイドブックならではの正確性とスピード感を学びました。<br><br>
+            店舗情報のファクトチェックなど、細かい作業も経験し、情報の正確性の重要性を改めて認識しました。`,
+          tags: [
+            '観光ガイド',
+            'リライト',
+            '編集プロダクション',
+            '校正',
+            'ファクトチェック',
+          ],
+        },
+        arukikata: {
+          title: '地球の歩き方・その他書籍',
+          meta: {
+            書籍名: '地球の歩き方 / キャベツとサラダの中華産地 他',
+            発行時期: '2019年～',
+            作業内容: 'ライティング/校正/リサーチ/編集',
+            勤務形態: 'フリーランス',
+          },
+          description: `フリーランスとして書籍のライティングに参加させていただきました。<br><br>
+            引っ越しを機に編集プロダクションは退職したものの、その後もご縁で仕事をいただき、書籍の制作に参加しました。<br><br>
+            どちらの書籍もゼロからの構築でしたが、私の担当したページは飲食店等だったため、事前の入念なリサーチから始めて、編集者さんからのフィードバックをいただきながら、書籍の制作を遂行しました。<br><br>
+            自分の担当ページは今でも大切に保管しています。一から作り上げる書籍制作の醍醐味を体験できた貴重な経験でした。`,
+          tags: [
+            '書籍制作',
+            'フリーランス',
+            'リサーチ',
+            '地球の歩き方',
+            '飲食店取材',
+          ],
+        },
+        hyogo1000: {
+          title: '1000％兵庫',
+          meta: {
+            サイト名: '1000％兵庫（現在は閉鎖）',
+            制作時期: '2014年',
+            作業内容: '取材/ライティング/撮影',
+            対象: '兵庫県内の飲食店約100件',
+          },
+          description: `兵庫県の「食」を紹介するWebサイトの記事作成を担当しました。<br><br>
+            兵庫県と神戸新聞事業社による事業で、兵庫県の観光Webサイトを作成することになり、当時住んでいた大阪から神戸市に通い参加しました。<br><br>
+            約半年で100件ほどの飲食店を紹介するというプロジェクトで、1人当たり20軒ほどのノルマが課されました。その成果は定期的な会議で発表していました。<br><br>
+            ミシュランガイド掲載店や神戸ビーフを扱う専門店など、兵庫県の食の魅力を存分に取材することができた貴重な経験でした。`,
+          tags: ['Web媒体', '飲食店取材', '兵庫県', '観光サイト', '撮影'],
+        },
+        'kobe-fashion': {
+          title: '神戸ファッションマガジン',
+          meta: {
+            サイト名: '神戸ファッションマガジン（Facebook）',
+            制作時期: '2015年ごろ',
+            作業内容: '取材/ライティング/撮影',
+            対象: '神戸のファッション・雑貨店',
+          },
+          description: `神戸ファッションをテーマにしたFacebookページの記事制作を担当しました。<br><br>
+            神戸ファッション協会と神戸新聞事業社が展開したFacebookページの記事作成を行いました。取材対象は、神戸のおしゃれな雑貨店やアパレルショップが中心で、当時の神戸市長も取材させていただきました。<br><br>
+            これまでの飲食店での取材でも店主との対話や写真撮影の機会はありましたが、完全に人物とその方のセンスに焦点をあてた取材は、この頃から本格的に始めました。<br><br>
+            ファッションという新しい分野での取材を通じて、人物インタビューのスキルを磨くことができました。`,
+          tags: [
+            'Facebook',
+            'ファッション',
+            '神戸',
+            '人物取材',
+            'インタビュー',
+          ],
+        },
+        'kobe-dream': {
+          title: 'KOBEドリームキャッチプロジェクト',
+          meta: {
+            サイト名: 'KOBEドリームキャッチプロジェクト',
+            媒体: 'Facebook / YouTube',
+            制作時期: '2016年ごろ',
+            作業内容: '取材/ライティング/撮影/動画編集',
+          },
+          description: `神戸で起業した中小企業を応援するサイトの制作に携わりました。<br><br>
+            神戸産業振興センターとビジョン・エンタープライズという制作会社が企画・発信している「KOBEドリームキャッチプロジェクト」において、取材から記事制作まで幅広く担当しました。<br><br>
+            記事はFacebookでの概要紹介がメインで、記事内容から抜粋したものを使って簡単な動画作成も行いました。<br><br>
+            浄化器、ジャム、焼き菓子、ハウス栽培の環境システムなど、さまざまなジャンルの社長を取材し、神戸の起業家精神を伝える貴重な経験となりました。`,
+          tags: [
+            '起業支援',
+            '動画制作',
+            'Facebook',
+            'YouTube',
+            '経営者インタビュー',
+          ],
+        },
+        'mapple-web': {
+          title: 'まっぷるWEB',
+          meta: {
+            サイト名: 'まっぷるWEB',
+            制作時期: '2021年〜2023年ごろ',
+            作業内容: 'ライティング/編集/SEO対策',
+            発行元: '昭文社',
+          },
+          description: `旅行ガイドブック「まっぷる」を発行している昭文社のWebサイトでSEO対策記事を執筆しました。<br><br>
+            はじめにキーワード選定のための企画立案を行い、案が通れば構成案を提出。ライティング、撮影、編集者さんと一緒に制作していく中で、ひとつひとつの記事をとても丁寧に制作できたと思います。<br><br>
+            長野県のご当地スーパー「ツルヤ」、コストコのおすすめ商品、クリスマスアイテムレポ、お取り寄せグルメやスイーツレビューなど、様々なジャンルの記事を執筆しました。<br><br>
+            SEO対策を意識した記事作成を通じて、検索エンジンに評価される質の高いコンテンツ作りのノウハウを深めることができました。`,
+          tags: ['SEO対策', '旅行情報', 'グルメレビュー', 'Web記事', '昭文社'],
+        },
+        lancers: {
+          title: 'LANCERS SEO記事制作',
+          meta: {
+            クライアント: 'リフォーム業者 / 建築メディア',
+            制作時期: '2018年〜2024年',
+            作業内容: 'SEOライティング',
+            プラットフォーム: 'LANCERS',
+          },
+          description: `LANCERSを通じて、様々な企業のSEO記事制作に携わりました。<br><br>
+            ライティングの経験を活かそうとしていたものの、自分のライティングスキルに自信がなかったため、また、単純に収益化できる見通しがなかったため、LANCERSに登録してみました。<br><br>
+            結果、リフォーム会社でトイレや宅建屋の記事、建築メディアで空調や橋梁などについての記事作成に携わることができて、認定ランサーになることができました。<br><br>
+            専門的な分野での記事作成を通じて、リサーチ力と専門知識の重要性を学び、SEOライティングのスキルを大きく向上させることができました。`,
+          tags: [
+            'SEOライティング',
+            'リフォーム',
+            '建築',
+            'LANCERS',
+            '認定ランサー',
+          ],
+        },
+        'yahoo-news': {
+          title: 'YAHOO!ニュース 飯田市情報',
+          meta: {
+            サイト名: 'YAHOO!ニュース配信',
+            制作時期: '2021年〜現在',
+            作業内容: '取材/ライティング/撮影',
+            対象地域: '長野県飯田市',
+          },
+          description: `YAHOO! JAPAN向けに飯田市の情報記事を作成しています。<br><br>
+            2024年に飯田市に引っ越してきたのですが、手探りながらもできることからライターの仕事を探し、応募してみたところ制作に携わることになりました。<br><br>
+            引っ越して1年足らずで、飯田市情報を発信することに不安もありましたが、地元の魅力を楽しんでもらえるような記事作成を心がけながら、精一杯取り組んでいます。<br><br>
+            地域に根ざした情報発信を通じて、新しい土地での人脈作りと地域理解を深める貴重な機会となっています。`,
+          tags: ['地域情報', 'YAHOO!ニュース', '飯田市', '長野県', '地域取材'],
+        },
+      };
+
+      // ポートフォリオアイテムにクリックイベントを追加
+      document.querySelectorAll('.portfolio-item').forEach((item) => {
+        item.addEventListener('click', function () {
+          const portfolioId = this.getAttribute('data-portfolio-id');
+          if (portfolioId && portfolioData[portfolioId]) {
+            showModal(portfolioData[portfolioId]);
+          }
+        });
+      });
+
+      // モーダルを表示する関数
+      function showModal(data) {
+        modalTitle.textContent = data.title;
+
+        // メタ情報を生成
+        modalMeta.innerHTML = '';
+        for (const [key, value] of Object.entries(data.meta)) {
+          modalMeta.innerHTML += `
+            <div class="modal-meta-item">
+              <div class="modal-meta-label">${key}</div>
+              <div class="modal-meta-value">${value}</div>
+            </div>
+          `;
+        }
+
+        // 説明文を設定
+        modalDescription.innerHTML = data.description;
+
+        // タグを生成
+        modalTags.innerHTML = '';
+        data.tags.forEach((tag) => {
+          modalTags.innerHTML += `<span class="modal-tag">${tag}</span>`;
+        });
+
+        // モーダルを表示
+        portfolioModal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // スクロールを無効化
+      }
+
+      // モーダルを閉じる
+      modalClose.addEventListener('click', function () {
+        portfolioModal.classList.remove('show');
+        document.body.style.overflow = ''; // スクロールを再度有効化
+      });
+
+      // モーダル外をクリックしたら閉じる
+      portfolioModal.addEventListener('click', function (e) {
+        if (e.target === portfolioModal) {
+          portfolioModal.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // ESCキーでモーダルを閉じる
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && portfolioModal.classList.contains('show')) {
+          portfolioModal.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+    </script>
+  </body>
+</html>
