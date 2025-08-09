@@ -39,10 +39,7 @@ function TimelineItem({ skill, index }: { skill: SkillItem; index: number }) {
   const icon = iconMap[skill.icon as keyof typeof iconMap];
 
   return (
-    <div
-      ref={ref}
-      className={`relative flex items-center mb-16 ${className}`}
-    >
+    <div ref={ref} className={`relative flex items-center mb-16 ${className}`}>
       {isEven ? (
         <>
           <div className="w-1/2 pr-8 text-right">
