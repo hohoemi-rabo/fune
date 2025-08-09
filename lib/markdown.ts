@@ -28,7 +28,14 @@ export async function getMarkdownContent(filename: string) {
 export async function getProfileData() {
   const { data, contentHtml } = await getMarkdownContent('profile');
   return {
-    ...data,
+    name: data.name,
+    title: data.title,
+    tagline: data.tagline,
+    subtitle1: data.subtitle1,
+    subtitle2: data.subtitle2,
+    subtagline: data.subtagline,
+    profileImage: data.profileImage,
+    stats: data.stats,
     bio: contentHtml,
   };
 }
