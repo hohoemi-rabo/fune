@@ -17,7 +17,7 @@ export const smoothScrollTo = (elementId: string) => {
 };
 
 // デバウンス関数
-export const debounce = <T extends (...args: any[]) => any>(
+export const debounce = <T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number
 ): ((...args: Parameters<T>) => void) => {
@@ -35,7 +35,7 @@ export const debounce = <T extends (...args: any[]) => any>(
 };
 
 // スロットル関数
-export const throttle = <T extends (...args: any[]) => any>(
+export const throttle = <T extends (...args: unknown[]) => unknown>(
   func: T,
   limit: number
 ): ((...args: Parameters<T>) => void) => {
@@ -104,7 +104,7 @@ export const storage = {
       return null;
     }
   },
-  set: (key: string, value: any) => {
+  set: (key: string, value: unknown) => {
     if (typeof window === 'undefined') return;
     try {
       window.localStorage.setItem(key, JSON.stringify(value));
