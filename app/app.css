@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cobalt-blue: #005A9C;
+  --color-deep-cobalt: #003D6B;
+  --color-light-cobalt: #4A90E2;
+  --color-ocean-cobalt: #0077BE;
+  --color-sky-cobalt: #87CEEB;
+  --color-coral-pink: #FF6B6B;
+  --color-sand-white: #FAFAFA;
+  --color-sunset-gold: #FFD700;
+  --color-sea-foam: #E0F2F1;
+  --color-deep-ocean: #1A237E;
+  --color-warm-gray: #757575;
+  --color-shell-beige: #FFF8E1;
+  --color-seaweed-green: #26A69A;
+  --color-aurora-teal: #4DD0E1;
+  --color-aurora-purple: #9C27B0;
+  --color-aurora-pink: #E91E63;
+  
+  --font-family-zen: 'Zen Maru Gothic', sans-serif;
+  --font-family-kiwi: 'Kiwi Maru', serif;
+  --font-family-noto-serif: 'Noto Serif JP', serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .container {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  @media (min-width: 640px) {
+    .section-padding {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+}
+
+@layer utilities {
+  .font-zen {
+    font-family: var(--font-family-zen);
+  }
+  
+  .font-kiwi {
+    font-family: var(--font-family-kiwi);
+  }
+  
+  .font-noto-serif {
+    font-family: var(--font-family-noto-serif);
+  }
+  
+  .bg-cobalt-blue {
+    background-color: var(--color-cobalt-blue);
+  }
+  
+  .bg-deep-ocean {
+    background-color: var(--color-deep-ocean);
+  }
+  
+  .bg-soft-blue {
+    background-color: var(--color-sky-cobalt);
+  }
+  
+  .bg-coral-pink {
+    background-color: var(--color-coral-pink);
+  }
+  
+  .bg-sand-white {
+    background-color: var(--color-sand-white);
+  }
+  
+  .text-cobalt-blue {
+    color: var(--color-cobalt-blue);
+  }
+  
+  .text-deep-ocean {
+    color: var(--color-deep-ocean);
+  }
+  
+  .text-coral-pink {
+    color: var(--color-coral-pink);
+  }
+  
+  .text-warm-gray {
+    color: var(--color-warm-gray);
+  }
+  
+  .border-coral-pink {
+    border-color: var(--color-coral-pink);
+  }
+  
+  .hover\:bg-coral-pink:hover {
+    background-color: var(--color-coral-pink);
+  }
+  
+  .hover\:text-coral-pink:hover {
+    color: var(--color-coral-pink);
+  }
+}
+
+/* カスタムアニメーション */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(-5px) translateY(-5px);
+  }
+  50% {
+    transform: translateX(0) translateY(-10px);
+  }
+  75% {
+    transform: translateX(5px) translateY(-5px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Swiperカスタマイズ */
+.swiper-pagination-bullet {
+  background-color: white;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--color-coral-pink);
+  opacity: 1;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: white;
+}
+
+/* フォーカススタイル */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-coral-pink);
+  box-shadow: 0 0 0 2px var(--color-coral-pink), 0 0 0 4px white;
+}
+
+/* セレクション */
+::selection {
+  background-color: var(--color-sky-cobalt);
+  color: var(--color-deep-ocean);
+}
+
+/* プリント用スタイル */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
