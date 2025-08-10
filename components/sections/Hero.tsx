@@ -25,8 +25,11 @@ export default function Hero({
       id="home"
       className="relative h-screen flex items-center justify-center overflow-hidden"
     >
+      {/* ベース背景色 */}
+      <div className="absolute inset-0 bg-gradient-to-b from-cobalt-blue to-deep-cobalt" />
+
       {/* 波アニメーション背景 */}
-      <WaveBackground />
+      <WaveBackground className="absolute inset-0" />
 
       {/* パーティクル背景 */}
       <ParticlesBackground />
@@ -77,7 +80,7 @@ export default function Hero({
         >
           <Link
             href="#contact"
-            className="inline-block px-8 py-3 glass-premium text-white rounded-full transition-all duration-300 transform hover:scale-105 group overflow-hidden relative"
+            className="inline-block px-10 py-4 bg-white/10 backdrop-blur-sm border border-white/70 text-white rounded-full transition-all duration-300 transform hover:scale-105 group overflow-hidden relative"
             onClick={(e) => {
               e.preventDefault();
               document

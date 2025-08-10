@@ -259,7 +259,6 @@
   /* Wave Flow Background */
   .wave-flow-background {
     @apply absolute top-0 left-0 w-full h-full overflow-hidden;
-    background: linear-gradient(to bottom, #005a9c, #003d6b);
   }
 
   .wave-flow-background::before {
