@@ -95,7 +95,7 @@ export default function Portfolio({
         </motion.h2>
 
         {/* フィルターボタン */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12 relative z-10">
+        <div className="flex flex-wrap justify-center gap-4 mb-12 relative z-20">
           <button
             className={`px-6 py-2 rounded-full font-zen font-medium transition-all duration-300 cursor-pointer ${
               filter === 'all'
@@ -133,7 +133,7 @@ export default function Portfolio({
 
         {/* ポートフォリオグリッド */}
         <AnimatePresence mode="popLayout">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto relative z-10">
             {filteredItems.map((item, index) => (
               <motion.div
                 key={item.id}
@@ -154,14 +154,17 @@ export default function Portfolio({
                   transition: { duration: 0.2 }
                 }}
                 className="portfolio-item relative overflow-hidden rounded-lg shadow-lg group cursor-pointer"
-                onClick={() => handleItemClick(item)}
                 whileHover={{ 
                   scale: 1.03,
                   transition: { duration: 0.2 }
                 }}
                 whileTap={{ scale: 0.98 }}
+                style={{ cursor: 'pointer' }}
+                onClick={() => handleItemClick(item)}
               >
-                <div className="relative w-full h-64">
+                <div 
+                  className="block w-full h-64 relative"
+                >
                   {getImageUrl(item).startsWith('http') ? (
                     <img
                       src={getImageUrl(item)}
@@ -178,7 +181,7 @@ export default function Portfolio({
                     />
                   )}
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 pointer-events-none">
                   <div className="text-white">
                     <h3 className="text-xl font-zen font-medium mb-2">
                       {item.title}
