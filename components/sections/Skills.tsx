@@ -9,12 +9,7 @@ import {
   faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import { SkillItem, PricingPlan } from '@/types';
-import {
-  fadeInUpVariants,
-  slideInLeftVariants,
-  slideInRightVariants,
-} from '@/lib/animations';
-import { useTimelineObserver } from '@/hooks/useIntersectionObserver';
+import { fadeInUpVariants } from '@/lib/animations';
 import Card3D from '@/components/ui/Card3D';
 import { cn } from '@/lib/utils';
 
@@ -29,37 +24,43 @@ interface SkillsProps {
   title: string;
   skills: SkillItem[];
   pricing: PricingPlan[];
-  description: string;
 }
 
 // タイムラインアイテムコンポーネント
 function TimelineItem({ skill, index }: { skill: SkillItem; index: number }) {
-  const { ref, className } = useTimelineObserver();
   const isEven = index % 2 === 0;
   const icon = iconMap[skill.icon as keyof typeof iconMap];
+  
+  // アイコンの背景色を決定
+  const getIconBgColor = () => {
+    if (skill.icon === 'fa-microphone') return 'bg-gradient-to-r from-coral-pink to-sunset-gold';
+    if (skill.icon === 'fa-pen-fancy') return 'bg-gradient-to-r from-ocean-cobalt to-light-cobalt';
+    if (skill.icon === 'fa-camera') return 'bg-gradient-to-r from-aurora-teal to-seaweed-green';
+    return 'bg-ocean-cobalt';
+  };
 
   return (
-    <div ref={ref} className={`relative flex items-center mb-16 ${className}`}>
+    <motion.div
+      className="relative flex items-center mb-16"
+      initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: '-100px' }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
+    >
       {isEven ? (
         <>
           <div className="w-1/2 pr-8 text-right">
-            <motion.div
-              className="glass-premium rounded-2xl p-6 transform hover:scale-105 transition-all duration-300"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideInRightVariants}
-            >
+            <div className="glass-premium rounded-2xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
               <h3 className="text-xl font-zen font-medium mb-2">
                 {skill.title}
               </h3>
               <p className="text-gray-700 font-kiwi font-light">
                 {skill.description}
               </p>
-            </motion.div>
+            </div>
           </div>
           <div
-            className={`absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-${skill.color} rounded-full border-4 border-white flex items-center justify-center shadow-lg z-10`}
+            className={`absolute left-1/2 transform -translate-x-1/2 w-12 h-12 ${getIconBgColor()} rounded-full border-4 border-white flex items-center justify-center shadow-lg z-10`}
           >
             {icon && <FontAwesomeIcon icon={icon} className="text-white" />}
           </div>
@@ -69,29 +70,23 @@ function TimelineItem({ skill, index }: { skill: SkillItem; index: number }) {
         <>
           <div className="w-1/2 pr-8"></div>
           <div
-            className={`absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-${skill.color} rounded-full border-4 border-white flex items-center justify-center shadow-lg z-10`}
+            className={`absolute left-1/2 transform -translate-x-1/2 w-12 h-12 ${getIconBgColor()} rounded-full border-4 border-white flex items-center justify-center shadow-lg z-10`}
           >
             {icon && <FontAwesomeIcon icon={icon} className="text-white" />}
           </div>
           <div className="w-1/2 pl-8">
-            <motion.div
-              className="glass-premium rounded-2xl p-6 transform hover:scale-105 transition-all duration-300"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideInLeftVariants}
-            >
+            <div className="glass-premium rounded-2xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
               <h3 className="text-xl font-zen font-medium mb-2">
                 {skill.title}
               </h3>
               <p className="text-gray-700 font-kiwi font-light">
                 {skill.description}
               </p>
-            </motion.div>
+            </div>
           </div>
         </>
       )}
-    </div>
+    </motion.div>
   );
 }
 
@@ -100,80 +95,100 @@ function PricingCard({ plan, index }: { plan: PricingPlan; index: number }) {
   const isPopular = plan.isPopular;
   const delay = index * 100;
 
+  // 背景装飾の色を決定
+  const bgGradient =
+    index === 0
+      ? 'from-ocean-cobalt to-light-cobalt'
+      : index === 1
+      ? 'from-coral-pink to-sunset-gold'
+      : 'from-aurora-purple to-aurora-pink';
+
   return (
-    <Card3D delay={delay} scale={isPopular ? 1.08 : 1.05}>
-      <div
-        className={cn(
-          'relative bg-white rounded-2xl shadow-xl p-8 text-center',
-          isPopular &&
-            'bg-gradient-to-br from-ocean-cobalt to-cobalt-blue text-white'
-        )}
-      >
-        {isPopular && plan.popularText && (
-          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-coral-pink rounded-full text-sm">
-            {plan.popularText}
-          </div>
-        )}
-
-        <h3
+    <div className="relative z-40 group">
+      <Card3D delay={delay} scale={isPopular ? 1.08 : 1.05}>
+        {/* 背景装飾 */}
+        <div
           className={cn(
-            'text-xl font-zen font-medium mb-4',
-            isPopular ? 'text-white mt-2' : 'text-ocean-cobalt'
-          )}
-        >
-          {plan.name}
-        </h3>
-
-        <p
-          className={cn(
-            'text-4xl font-zen font-medium mb-4',
-            isPopular ? 'text-white' : 'gradient-text'
-          )}
-        >
-          {plan.price}
-        </p>
-
-        <ul
-          className={cn(
-            'space-y-3 mb-6',
-            isPopular ? 'text-white' : 'text-gray-700'
-          )}
-        >
-          {plan.features.map((feature, featureIndex) => (
-            <li key={featureIndex} className="flex items-center justify-center">
-              <FontAwesomeIcon
-                icon={faCheck}
-                className={cn(
-                  'mr-2',
-                  isPopular ? 'text-white' : 'text-seaweed-green'
-                )}
-              />
-              {feature}
-            </li>
-          ))}
-        </ul>
-
-        <button
-          className={cn(
-            'w-full py-3 rounded-full transition-all duration-300',
+            'absolute inset-0 bg-gradient-to-r rounded-2xl transform transition-transform duration-300',
             isPopular
-              ? 'bg-white text-ocean-cobalt hover:bg-gray-100 font-medium'
-              : 'border-2 border-ocean-cobalt text-ocean-cobalt hover:bg-ocean-cobalt hover:text-white'
+              ? 'rotate-[11deg] group-hover:rotate-[5deg] opacity-30'
+              : 'rotate-[9deg] group-hover:rotate-[4deg] opacity-20',
+            bgGradient
+          )}
+        />
+
+        <div
+          className={cn(
+            'relative rounded-2xl shadow-xl px-7 py-10 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer',
+            isPopular
+              ? 'bg-gradient-to-br from-ocean-cobalt to-cobalt-blue text-white shadow-2xl'
+              : 'bg-white'
           )}
         >
-          詳細を見る
-        </button>
-      </div>
-    </Card3D>
+          {isPopular && plan.popularText && (
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-coral-pink rounded-full text-sm text-white font-medium">
+              {plan.popularText}
+            </div>
+          )}
+
+          <h3
+            className={cn(
+              'text-2xl font-zen font-medium mb-6',
+              isPopular ? 'text-white mt-2' : 'text-ocean-cobalt'
+            )}
+          >
+            {plan.name}
+          </h3>
+
+          <p
+            className={cn(
+              'text-5xl font-zen font-medium mb-6',
+              isPopular ? 'text-white' : 'gradient-text'
+            )}
+          >
+            {plan.price.startsWith('¥') ? plan.price : `¥${plan.price}`}
+          </p>
+
+          <ul
+            className={cn(
+              'space-y-4 mb-8 text-base',
+              isPopular ? 'text-white' : 'text-gray-700'
+            )}
+          >
+            {plan.features.map((feature, featureIndex) => (
+              <li
+                key={featureIndex}
+                className="flex items-center justify-center"
+              >
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  className={cn(
+                    'mr-2',
+                    isPopular ? 'text-white' : 'text-seaweed-green'
+                  )}
+                />
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <button
+            className={cn(
+              'w-full py-3 rounded-full transition-all duration-300 text-lg font-medium',
+              isPopular
+                ? 'bg-white text-ocean-cobalt hover:bg-gray-100 font-medium'
+                : 'border-2 border-ocean-cobalt text-ocean-cobalt hover:bg-ocean-cobalt hover:text-white'
+            )}
+          >
+            詳細を見る
+          </button>
+        </div>
+      </Card3D>
+    </div>
   );
 }
 
-export default function Skills({
-  title,
-  skills,
-  pricing,
-  description,
-}: SkillsProps) {
+export default function Skills({ title, skills, pricing }: SkillsProps) {
   return (
     <section
       id="skills"
@@ -190,9 +205,9 @@ export default function Skills({
           <span className="gradient-text">{title}</span>
         </motion.h2>
 
-        <div className="max-w-4xl mx-auto">
-          {/* タイムライン */}
-          <div className="relative">
+        <div className="max-w-5xl mx-auto">
+          {/* デスクトップ版タイムライン */}
+          <div className="hidden lg:block relative">
             {/* タイムラインの線 */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-ocean-cobalt to-coral-pink"></div>
 
@@ -206,6 +221,15 @@ export default function Skills({
           <div className="lg:hidden space-y-6">
             {skills.map((skill, index) => {
               const icon = iconMap[skill.icon as keyof typeof iconMap];
+              
+              // アイコンの背景色を決定
+              const getIconBgColor = () => {
+                if (skill.icon === 'fa-microphone') return 'bg-gradient-to-r from-coral-pink to-sunset-gold';
+                if (skill.icon === 'fa-pen-fancy') return 'bg-gradient-to-r from-ocean-cobalt to-light-cobalt';
+                if (skill.icon === 'fa-camera') return 'bg-gradient-to-r from-aurora-teal to-seaweed-green';
+                return 'bg-ocean-cobalt';
+              };
+              
               return (
                 <motion.div
                   key={skill.title}
@@ -218,7 +242,7 @@ export default function Skills({
                 >
                   <div className="flex items-center mb-3">
                     <div
-                      className={`w-10 h-10 bg-${skill.color} rounded-full flex items-center justify-center mr-3`}
+                      className={`w-10 h-10 ${getIconBgColor()} rounded-full flex items-center justify-center mr-3`}
                     >
                       {icon && (
                         <FontAwesomeIcon
@@ -241,7 +265,7 @@ export default function Skills({
 
           {/* 料金プラン */}
           <motion.div
-            className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 relative z-30"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -253,7 +277,7 @@ export default function Skills({
           </motion.div>
 
           {/* 説明文 */}
-          {description && (
+          {/* {description && (
             <motion.div
               className="mt-16 text-center"
               initial="hidden"
@@ -266,7 +290,7 @@ export default function Skills({
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             </motion.div>
-          )}
+          )} */}
         </div>
       </div>
     </section>
