@@ -54,7 +54,7 @@ export default function Instagram({ posts = defaultPosts }: InstagramProps) {
   const instagramUrl = 'https://instagram.com'; // 実際のURLに変更してください
 
   return (
-    <section className="py-20 bg-sea-foam">
+    <section className="py-20 bg-sea-foam relative z-20">
       <div className="container mx-auto px-4">
         <motion.h2
           className="text-4xl font-zen font-medium text-center mb-12 gradient-text"
@@ -145,7 +145,7 @@ export function InstagramFeed({ limit = 6 }: InstagramFeedProps) {
 // インスタグラムグリッド（マソンリーレイアウト）
 export function InstagramMasonry({ posts = defaultPosts }: InstagramProps) {
   return (
-    <section className="py-20 bg-sea-foam">
+    <section className="py-20 bg-sea-foam relative z-20">
       <div className="container mx-auto px-4">
         <motion.h2
           className="text-4xl font-zen font-medium text-center mb-12 gradient-text"
