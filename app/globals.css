@@ -7,14 +7,14 @@
     --font-zen: 'Zen Maru Gothic', sans-serif;
     --font-kiwi: 'Kiwi Maru', serif;
     --font-noto-serif: 'Noto Serif JP', serif;
-    
-    --color-ocean-cobalt: #004A8D;
-    --color-deep-ocean: #1A237E;
-    --color-soft-blue: #87CEEB;
-    --color-pale-blue: #E6F3F9;
-    --color-coral-pink: #FF6B6B;
-    --color-sand-white: #FFF8E7;
-    --color-warm-gray: #6B7280;
+
+    --color-ocean-cobalt: #004a8d;
+    --color-deep-ocean: #1a237e;
+    --color-soft-blue: #87ceeb;
+    --color-pale-blue: #e6f3f9;
+    --color-coral-pink: #ff6b6b;
+    --color-sand-white: #fff8e7;
+    --color-warm-gray: #6b7280;
   }
 
   html {
@@ -28,7 +28,7 @@
 
 @layer components {
   .container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .section-padding {
@@ -179,7 +179,8 @@
 
 /* カスタムアニメーション */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -188,7 +189,8 @@
 }
 
 @keyframes wave {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
