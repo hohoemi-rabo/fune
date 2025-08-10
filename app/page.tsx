@@ -65,7 +65,6 @@ export default async function Home() {
           title={skills.title}
           skills={skills.skills}
           pricing={skills.pricing}
-          description={skills.description}
         />
 
         {/* Instagramセクション */}

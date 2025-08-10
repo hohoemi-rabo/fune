@@ -142,7 +142,7 @@ interface InstagramFeedProps {
   limit?: number;
 }
 
-export function InstagramFeed({ accessToken, limit = 6 }: InstagramFeedProps) {
+export function InstagramFeed({ limit = 6 }: InstagramFeedProps) {
   // API連携する場合はここでデータ取得処理を実装
   // 現在はデモ用の静的データを使用
 

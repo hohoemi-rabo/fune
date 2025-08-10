@@ -32,7 +32,7 @@ export default function ParticlesBackground({
     });
   }, []);
 
-  const particlesLoaded = useCallback(async (_container?: Container) => {
+  const particlesLoaded = useCallback(async () => {
     // パーティクルがロードされた後の処理（必要に応じて）
     console.log('Particles loaded');
   }, []);

@@ -1,10 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { WaveSVG } from '@/components/effects/WaveBackground';
 import { socialLinks } from '@/lib/utils';
 import { fadeInUpVariants } from '@/lib/animations';
 
