@@ -80,7 +80,7 @@ export default function Hero({
         >
           <Link
             href="#contact"
-            className="inline-block px-10 py-3 bg-white/10 backdrop-blur-sm border border-white/70 text-white rounded-full transition-all duration-300 transform hover:scale-105 group overflow-hidden relative"
+            className="inline-block px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/70 text-white rounded-full transition-all duration-300 transform hover:scale-105 group overflow-hidden relative"
             onClick={(e) => {
               e.preventDefault();
               document
