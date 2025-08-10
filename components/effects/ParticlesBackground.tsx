@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { loadFull } from 'tsparticles';
+import { loadSlim } from '@tsparticles/slim';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
-import type { Container, ISourceOptions } from '@tsparticles/engine';
+import type { ISourceOptions } from '@tsparticles/engine';
 import {
   particlesConfig,
   mobileParticlesConfig,
@@ -26,7 +26,7 @@ export default function ParticlesBackground({
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
-      await loadFull(engine);
+      await loadSlim(engine);
     }).then(() => {
       setInit(true);
     });

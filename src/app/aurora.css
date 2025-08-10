@@ -1,0 +1,58 @@
+/* Aurora Wave Animation CSS */
+
+/* Standard Keyframes */
+@keyframes aurora-sweep {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes aurora-wave-reverse {
+  from {
+    background-position: -150% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+/* Webkit Keyframes */
+@-webkit-keyframes aurora-sweep {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@-webkit-keyframes aurora-wave-reverse {
+  from {
+    background-position: -150% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+/* Mozilla Keyframes */
+@-moz-keyframes aurora-sweep {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@-moz-keyframes aurora-wave-reverse {
+  from {
+    background-position: -150% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
