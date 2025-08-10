@@ -87,7 +87,7 @@ export default function Contact({ title = 'お問い合わせ' }: ContactProps) 
     >
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-4xl font-zen font-medium text-center mb-12"
+          className="text-4xl font-zen font-medium text-center mb-12 text-white"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}

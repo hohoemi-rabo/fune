@@ -54,6 +54,13 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #005a9c 0%, #4a90e2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 @layer utilities {

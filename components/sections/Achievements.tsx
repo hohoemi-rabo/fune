@@ -43,7 +43,7 @@ export default function Achievements({
       <section className="py-20 bg-gradient-to-r from-ocean-cobalt to-cobalt-blue text-white">
         <div className="container mx-auto px-4">
           <motion.h2
-            className="text-4xl font-zen font-medium text-center mb-12"
+            className="text-4xl font-zen font-medium text-center mb-12 text-white"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -107,7 +107,7 @@ export default function Achievements({
     <section className="py-20 bg-gradient-to-r from-ocean-cobalt to-cobalt-blue text-white overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-4xl font-zen font-medium text-center mb-12"
+          className="text-4xl font-zen font-medium text-center mb-12 text-white"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -199,7 +199,7 @@ export function StaticAchievements({
     <section className="py-20 bg-gradient-to-r from-ocean-cobalt to-cobalt-blue text-white">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-4xl font-zen font-medium text-center mb-12"
+          className="text-4xl font-zen font-medium text-center mb-12 text-white"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}

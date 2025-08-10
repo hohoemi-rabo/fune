@@ -93,7 +93,7 @@ export default function Expertise({
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
-          className="text-4xl font-zen font-medium text-center mb-12"
+          className="text-4xl font-zen font-medium text-center mb-12 gradient-text"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
