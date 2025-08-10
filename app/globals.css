@@ -91,6 +91,85 @@
   }
 }
 
+/* オーロラテキストエフェクト */
+.aurora-wave-text {
+  position: relative;
+  display: inline-block;
+  font-weight: 500;
+  background: linear-gradient(
+    90deg,
+    white 0%,
+    white 40%,
+    #00ffff 42%,
+    #ff00ff 44%,
+    #ffff00 46%,
+    #ff00aa 48%,
+    #00ff00 50%,
+    #0099ff 52%,
+    #ff0066 54%,
+    white 56%,
+    white 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  color: transparent;
+  animation: aurora-sweep 8s linear infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes aurora-sweep {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.aurora-wave-text-reverse {
+  position: relative;
+  display: inline-block;
+  font-weight: 500;
+  background: linear-gradient(
+    -90deg,
+    white 0%,
+    white 40%,
+    #00ffff 42%,
+    #ff00ff 44%,
+    #ffff00 46%,
+    #ff00aa 48%,
+    #00ff00 50%,
+    #0099ff 52%,
+    #ff0066 54%,
+    white 56%,
+    white 100%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  color: transparent;
+  animation: aurora-sweep-reverse 8s linear infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes aurora-sweep-reverse {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
 /* カスタムアニメーション */
 @keyframes float {
   0%, 100% {

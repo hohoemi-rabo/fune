@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, CSSProperties } from 'react';
 
 interface AuroraTextProps {
   children: string;
@@ -16,54 +16,38 @@ export default function AuroraText({
 }: AuroraTextProps) {
   const spanRef = useRef<HTMLSpanElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
+  const [backgroundPosition, setBackgroundPosition] = useState('100% 0');
+
+  // グラデーション定義
+  const gradient = `linear-gradient(
+    ${reverse ? '-90deg' : '90deg'},
+    white 0%,
+    white 40%,
+    #00ffff 42%,
+    #ff00ff 44%,
+    #ffff00 46%,
+    #ff00aa 48%,
+    #00ff00 50%,
+    #0099ff 52%,
+    #ff0066 54%,
+    white 56%,
+    white 100%
+  )`;
 
   useEffect(() => {
-    if (spanRef.current) {
-      const element = spanRef.current;
-      
-      // グラデーションスタイルを適用
-      element.style.background = `linear-gradient(
-        ${reverse ? '-90deg' : '90deg'},
-        white 0%,
-        white 40%,
-        #00ffff 42%,
-        #ff00ff 44%,
-        #ffff00 46%,
-        #ff00aa 48%,
-        #00ff00 50%,
-        #0099ff 52%,
-        #ff0066 54%,
-        white 56%,
-        white 100%
-      )`;
-      element.style.backgroundSize = '200% 100%';
-      element.style.backgroundPosition = '100% 0';
-      
-      // ベンダープレフィックス付きスタイル
-      const style = element.style as CSSStyleDeclaration & {
-        webkitBackgroundClip?: string;
-        webkitTextFillColor?: string;
-      };
-      style.webkitBackgroundClip = 'text';
-      element.style.backgroundClip = 'text';
-      style.webkitTextFillColor = 'transparent';
-      element.style.filter = 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.5))';
-      
-      // アニメーションを開始
-      let position = 100;
-      const animationSpeed = reverse ? 0.3 : 0.5;
-      
-      const animate = () => {
-        position -= animationSpeed;
-        if (position <= -100) {
-          position = 100;
-        }
-        element.style.backgroundPosition = `${position}% 0`;
-        animationRef.current = requestAnimationFrame(animate);
-      };
-      
+    let position = 100;
+    const animationSpeed = reverse ? 0.3 : 0.5;
+    
+    const animate = () => {
+      position -= animationSpeed;
+      if (position <= -100) {
+        position = 100;
+      }
+      setBackgroundPosition(`${position}% 0`);
       animationRef.current = requestAnimationFrame(animate);
-    }
+    };
+    
+    animationRef.current = requestAnimationFrame(animate);
 
     // クリーンアップ関数でアニメーションを停止
     return () => {
@@ -73,17 +57,26 @@ export default function AuroraText({
     };
   }, [reverse]);
 
+  const style: CSSProperties = {
+    position: 'relative',
+    display: 'inline-block',
+    fontWeight: 500,
+    background: gradient,
+    backgroundSize: '200% 100%',
+    backgroundPosition: backgroundPosition,
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    color: 'transparent',
+    filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.5))',
+  };
+
   return (
     <span 
       ref={spanRef}
       className={cn('relative inline-block font-medium', className)}
       data-text={children}
-      style={{
-        position: 'relative',
-        display: 'inline-block',
-        color: 'white',
-        fontWeight: 500,
-      }}
+      style={style}
     >
       {children}
       {/* オーロラの輝きエフェクト */}
@@ -160,52 +153,41 @@ export function DelayedAuroraText({
 }: DelayedAuroraTextProps) {
   const spanRef = useRef<HTMLSpanElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
+  const [backgroundPosition, setBackgroundPosition] = useState('100% 0');
+  const [showGradient, setShowGradient] = useState(false);
+
+  const gradient = `linear-gradient(
+    ${reverse ? '-90deg' : '90deg'},
+    white 0%,
+    white 40%,
+    #00ffff 42%,
+    #ff00ff 44%,
+    #ffff00 46%,
+    #ff00aa 48%,
+    #00ff00 50%,
+    #0099ff 52%,
+    #ff0066 54%,
+    white 56%,
+    white 100%
+  )`;
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (spanRef.current) {
-        const element = spanRef.current;
-        
-        element.style.background = `linear-gradient(
-          ${reverse ? '-90deg' : '90deg'},
-          white 0%,
-          white 40%,
-          #00ffff 42%,
-          #ff00ff 44%,
-          #ffff00 46%,
-          #ff00aa 48%,
-          #00ff00 50%,
-          #0099ff 52%,
-          #ff0066 54%,
-          white 56%,
-          white 100%
-        )`;
-        element.style.backgroundSize = '200% 100%';
-        element.style.backgroundPosition = '100% 0';
-        
-        const style = element.style as CSSStyleDeclaration & {
-          webkitBackgroundClip?: string;
-          webkitTextFillColor?: string;
-        };
-        style.webkitBackgroundClip = 'text';
-        element.style.backgroundClip = 'text';
-        style.webkitTextFillColor = 'transparent';
-        element.style.filter = 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.5))';
-        
-        let position = 100;
-        const animationSpeed = reverse ? 0.3 : 0.5;
-        
-        const animate = () => {
-          position -= animationSpeed;
-          if (position <= -100) {
-            position = 100;
-          }
-          element.style.backgroundPosition = `${position}% 0`;
-          animationRef.current = requestAnimationFrame(animate);
-        };
-        
+      setShowGradient(true);
+      
+      let position = 100;
+      const animationSpeed = reverse ? 0.3 : 0.5;
+      
+      const animate = () => {
+        position -= animationSpeed;
+        if (position <= -100) {
+          position = 100;
+        }
+        setBackgroundPosition(`${position}% 0`);
         animationRef.current = requestAnimationFrame(animate);
-      }
+      };
+      
+      animationRef.current = requestAnimationFrame(animate);
     }, delay * 1000);
 
     return () => {
@@ -216,17 +198,29 @@ export function DelayedAuroraText({
     };
   }, [reverse, delay]);
 
+  const style: CSSProperties = showGradient ? {
+    position: 'relative',
+    display: 'inline-block',
+    fontWeight: 500,
+    background: gradient,
+    backgroundSize: '200% 100%',
+    backgroundPosition: backgroundPosition,
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    color: 'transparent',
+    filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.5))',
+  } : {
+    color: 'white',
+    fontWeight: 500,
+  };
+
   return (
     <span 
       ref={spanRef}
       className={cn('relative inline-block font-medium', className)}
       data-text={children}
-      style={{
-        position: 'relative',
-        display: 'inline-block',
-        color: 'white',
-        fontWeight: 500,
-      }}
+      style={style}
     >
       {children}
     </span>
