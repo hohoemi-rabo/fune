@@ -83,21 +83,14 @@ export default function Instagram({ posts = defaultPosts }: InstagramProps) {
               whileTap={{ scale: 0.95 }}
             >
               <div className="relative w-full h-full">
-                {post.image.startsWith('http') ? (
-                  <img
-                    src={post.image}
-                    alt={post.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                ) : (
-                  <Image
-                    src={post.image}
-                    alt={post.alt}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    sizes="(max-width: 768px) 50vw, 33vw"
-                  />
-                )}
+                <Image
+                  src={post.image}
+                  alt={post.alt}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  unoptimized={post.image.startsWith('http')}
+                />
 
                 {/* オーバーレイ */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -176,21 +169,14 @@ export function InstagramMasonry({ posts = defaultPosts }: InstagramProps) {
             >
               <div className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 group cursor-pointer">
                 <div className="relative">
-                  {post.image.startsWith('http') ? (
-                    <img
-                      src={post.image}
-                      alt={post.alt}
-                      className="w-full h-auto group-hover:scale-110 transition-transform duration-500"
-                    />
-                  ) : (
-                    <Image
-                      src={post.image}
-                      alt={post.alt}
-                      width={300}
-                      height={300}
-                      className="w-full h-auto group-hover:scale-110 transition-transform duration-500"
-                    />
-                  )}
+                  <Image
+                    src={post.image}
+                    alt={post.alt}
+                    width={300}
+                    height={300}
+                    className="w-full h-auto group-hover:scale-110 transition-transform duration-500"
+                    unoptimized={post.image.startsWith('http')}
+                  />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <FontAwesomeIcon

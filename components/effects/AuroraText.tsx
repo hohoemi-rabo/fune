@@ -15,7 +15,7 @@ export default function AuroraText({
   reverse = false,
 }: AuroraTextProps) {
   const spanRef = useRef<HTMLSpanElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     if (spanRef.current) {
@@ -40,10 +40,13 @@ export default function AuroraText({
       element.style.backgroundPosition = '100% 0';
       
       // ベンダープレフィックス付きスタイル
-      const webkitElement = element as any;
-      webkitElement.style.webkitBackgroundClip = 'text';
+      const style = element.style as CSSStyleDeclaration & {
+        webkitBackgroundClip?: string;
+        webkitTextFillColor?: string;
+      };
+      style.webkitBackgroundClip = 'text';
       element.style.backgroundClip = 'text';
-      webkitElement.style.webkitTextFillColor = 'transparent';
+      style.webkitTextFillColor = 'transparent';
       element.style.filter = 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.5))';
       
       // アニメーションを開始
@@ -156,7 +159,7 @@ export function DelayedAuroraText({
   delay = 0,
 }: DelayedAuroraTextProps) {
   const spanRef = useRef<HTMLSpanElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -180,10 +183,13 @@ export function DelayedAuroraText({
         element.style.backgroundSize = '200% 100%';
         element.style.backgroundPosition = '100% 0';
         
-        const webkitElement = element as any;
-        webkitElement.style.webkitBackgroundClip = 'text';
+        const style = element.style as CSSStyleDeclaration & {
+          webkitBackgroundClip?: string;
+          webkitTextFillColor?: string;
+        };
+        style.webkitBackgroundClip = 'text';
         element.style.backgroundClip = 'text';
-        webkitElement.style.webkitTextFillColor = 'transparent';
+        style.webkitTextFillColor = 'transparent';
         element.style.filter = 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.5))';
         
         let position = 100;

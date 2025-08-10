@@ -76,22 +76,15 @@ export default function About({ name, profileImage, bio, stats }: AboutProps) {
             variants={slideInRightVariants}
           >
             <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden shadow-2xl border-4 border-white relative">
-              {profileImage.startsWith('http') ? (
-                <img
-                  src={profileImage}
-                  alt={name}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <Image
-                  src={profileImage}
-                  alt={name}
-                  width={192}
-                  height={192}
-                  className="w-full h-full object-cover"
-                  priority
-                />
-              )}
+              <Image
+                src={profileImage}
+                alt={name}
+                width={192}
+                height={192}
+                className="w-full h-full object-cover"
+                priority
+                unoptimized={profileImage.startsWith('http')}
+              />
             </div>
           </motion.div>
 

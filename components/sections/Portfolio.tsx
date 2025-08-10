@@ -165,21 +165,14 @@ export default function Portfolio({
                 <div 
                   className="block w-full h-64 relative"
                 >
-                  {getImageUrl(item).startsWith('http') ? (
-                    <img
-                      src={getImageUrl(item)}
-                      alt={item.imageAlt}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <Image
-                      src={getImageUrl(item)}
-                      alt={item.imageAlt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                  )}
+                  <Image
+                    src={getImageUrl(item)}
+                    alt={item.imageAlt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    unoptimized={getImageUrl(item).startsWith('http')}
+                  />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 pointer-events-none">
                   <div className="text-white">
