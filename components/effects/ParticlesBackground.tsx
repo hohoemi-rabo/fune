@@ -72,7 +72,7 @@ export function SimpleParticlesBackground({
         },
       },
       color: {
-        value: '#ffffff',
+        value: '#c0c0c0',
       },
       shape: {
         type: 'circle',
@@ -82,8 +82,15 @@ export function SimpleParticlesBackground({
         random: true,
       },
       size: {
-        value: 2,
+        value: 3,
         random: true,
+      },
+      links: {
+        enable: true,
+        distance: 150,
+        color: '#c0c0c0',
+        opacity: 0.3,
+        width: 1,
       },
       move: {
         enable: true,

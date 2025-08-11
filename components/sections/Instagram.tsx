@@ -11,6 +11,7 @@ import {
   scaleInVariants,
 } from '@/lib/animations';
 import { getPlaceholderImage } from '@/lib/utils';
+import { SimpleParticlesBackground } from '@/components/effects/ParticlesBackground';
 
 interface InstagramProps {
   posts?: InstagramPost[];
@@ -54,8 +55,12 @@ export default function Instagram({ posts = defaultPosts }: InstagramProps) {
   const instagramUrl = 'https://instagram.com'; // 実際のURLに変更してください
 
   return (
-    <section className="py-20 bg-sea-foam relative z-20">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-sea-foam relative z-20 overflow-hidden">
+      <SimpleParticlesBackground 
+        className="pointer-events-none opacity-50" 
+        id="instagram-particles" 
+      />
+      <div className="container mx-auto px-4 relative z-10">
         <motion.h2
           className="text-4xl font-zen font-medium text-center mb-12 gradient-text"
           initial="hidden"
@@ -145,8 +150,12 @@ export function InstagramFeed({ limit = 6 }: InstagramFeedProps) {
 // インスタグラムグリッド（マソンリーレイアウト）
 export function InstagramMasonry({ posts = defaultPosts }: InstagramProps) {
   return (
-    <section className="py-20 bg-sea-foam relative z-20">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-sea-foam relative z-20 overflow-hidden">
+      <SimpleParticlesBackground 
+        className="pointer-events-none opacity-50" 
+        id="instagram-masonry-particles" 
+      />
+      <div className="container mx-auto px-4 relative z-10">
         <motion.h2
           className="text-4xl font-zen font-medium text-center mb-12 gradient-text"
           initial="hidden"

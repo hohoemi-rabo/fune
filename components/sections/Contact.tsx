@@ -6,6 +6,7 @@ import { ContactFormData } from '@/types';
 import { fadeInUpVariants } from '@/lib/animations';
 import { validateContactForm } from '@/lib/utils';
 import { cn } from '@/lib/utils';
+import { SimpleParticlesBackground } from '@/components/effects/ParticlesBackground';
 
 interface ContactProps {
   title?: string;
@@ -83,9 +84,13 @@ export default function Contact({ title = 'お問い合わせ' }: ContactProps) 
   return (
     <section
       id="contact"
-      className="py-20 bg-gradient-to-br from-ocean-cobalt via-cobalt-blue to-deep-cobalt text-white"
+      className="py-20 bg-gradient-to-br from-ocean-cobalt via-cobalt-blue to-deep-cobalt text-white relative z-20 overflow-hidden"
     >
-      <div className="container mx-auto px-4">
+      <SimpleParticlesBackground 
+        className="pointer-events-none opacity-50" 
+        id="contact-particles" 
+      />
+      <div className="container mx-auto px-4 relative z-10">
         <motion.h2
           className="text-4xl font-zen font-medium text-center mb-12 text-white"
           initial="hidden"

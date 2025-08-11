@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { socialLinks } from '@/lib/utils';
 import { fadeInUpVariants } from '@/lib/animations';
+import { SimpleParticlesBackground } from '@/components/effects/ParticlesBackground';
 
 interface FooterProps {
   name?: string;
@@ -22,9 +23,13 @@ export default function Footer({
   };
 
   return (
-    <footer className="relative bg-deep-ocean text-white">
+    <footer className="relative bg-deep-ocean text-white z-20 overflow-hidden">
+      <SimpleParticlesBackground 
+        className="pointer-events-none opacity-30" 
+        id="footer-particles" 
+      />
       {/* 波のSVG */}
-      <div className="absolute top-0 left-0 right-0 transform -translate-y-full">
+      <div className="absolute top-0 left-0 right-0 transform -translate-y-full z-10">
         <svg viewBox="0 0 1440 120" className="w-full">
           <path
             fill="#1A237E"
@@ -33,7 +38,7 @@ export default function Footer({
         </svg>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="flex flex-col items-center">
           <motion.h3
             className="text-2xl font-zen font-medium mb-6"
@@ -123,9 +128,13 @@ export function ExtendedFooter({
   };
 
   return (
-    <footer className="relative bg-deep-ocean text-white">
+    <footer className="relative bg-deep-ocean text-white z-20 overflow-hidden">
+      <SimpleParticlesBackground 
+        className="pointer-events-none opacity-30" 
+        id="footer-extended-particles" 
+      />
       {/* 波のSVG */}
-      <div className="absolute top-0 left-0 right-0 transform -translate-y-full">
+      <div className="absolute top-0 left-0 right-0 transform -translate-y-full z-10">
         <svg viewBox="0 0 1440 120" className="w-full">
           <path
             fill="#1A237E"
@@ -134,7 +143,7 @@ export function ExtendedFooter({
         </svg>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* About */}
           <motion.div
