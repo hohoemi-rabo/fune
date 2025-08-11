@@ -38,13 +38,18 @@ export default function Navigation() {
   ) => {
     e.preventDefault();
     setIsOpen(false);
+    
+    // overflow設定を即座に解除
+    document.body.style.overflow = '';
 
-    // スムーズスクロール
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    // スムーズスクロールを少し遅延させて実行
+    setTimeout(() => {
+      const targetId = href.replace('#', '');
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   return (
