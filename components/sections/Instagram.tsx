@@ -56,13 +56,14 @@ export default function Instagram({ posts = defaultPosts }: InstagramProps) {
 
   return (
     <section className="py-20 bg-sea-foam relative z-20 overflow-hidden">
-      <SimpleParticlesBackground 
-        className="pointer-events-none opacity-50" 
-        id="instagram-particles" 
+      <SimpleParticlesBackground
+        className="pointer-events-none opacity-50"
+        id="instagram-particles"
       />
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
           className="text-4xl font-zen font-medium text-center mb-12 gradient-text"
+          style={{ lineHeight: '3rem' }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -151,13 +152,14 @@ export function InstagramFeed({ limit = 6 }: InstagramFeedProps) {
 export function InstagramMasonry({ posts = defaultPosts }: InstagramProps) {
   return (
     <section className="py-20 bg-sea-foam relative z-20 overflow-hidden">
-      <SimpleParticlesBackground 
-        className="pointer-events-none opacity-50" 
-        id="instagram-masonry-particles" 
+      <SimpleParticlesBackground
+        className="pointer-events-none opacity-50"
+        id="instagram-masonry-particles"
       />
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
           className="text-4xl font-zen font-medium text-center mb-12 gradient-text"
+          style={{ lineHeight: '5.5rem' }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
