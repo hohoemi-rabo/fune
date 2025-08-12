@@ -209,13 +209,30 @@ export const shuffleArray = <T>(array: T[]): T[] => {
   return shuffled;
 };
 
-// ページトップへスクロール
+// ページトップへスクロール（高性能PC対応）
 export const scrollToTop = () => {
   if (typeof window !== 'undefined') {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    const startPosition = window.pageYOffset;
+    const duration = 800; // 800msで固定
+    const startTime = performance.now();
+    
+    const animation = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // easeInOutCubicイージング関数
+      const easeInOutCubic = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      
+      window.scrollTo(0, startPosition * (1 - easeInOutCubic));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animation);
+      }
+    };
+    
+    requestAnimationFrame(animation);
   }
 };
 
