@@ -26,6 +26,7 @@ const notoSerifJP = Noto_Serif_JP({
 
 // メタデータ
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'),
   title: '本岡紗代 | 空気と心を言葉に変えるWebライター',
   description:
     '空気と心を言葉に変える。地域密着の取材記事やインタビューを中心に、観光・飲食・暮らし・IT・リフォーム関係など、多彩なジャンルの執筆を行うWebライターです。',
@@ -85,7 +86,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body
-        className="font-kiwi text-gray-800 bg-sand-white antialiased"
+        className="font-zen text-gray-800 bg-sand-white antialiased"
         suppressHydrationWarning
       >
         {/* スキップリンク（アクセシビリティ） */}

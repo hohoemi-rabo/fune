@@ -182,6 +182,8 @@ export interface InstagramPost {
   id: string;
   image: string;
   alt: string;
+  permalink?: string;
+  timestamp?: string;
 }
 
 // ソーシャルリンクの型定義

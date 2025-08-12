@@ -6,7 +6,7 @@ import Expertise from '@/components/sections/Expertise';
 import Portfolio from '@/components/sections/Portfolio';
 import Achievements from '@/components/sections/Achievements';
 import Skills from '@/components/sections/Skills';
-import Instagram from '@/components/sections/Instagram';
+import InstagramServer from '@/components/sections/InstagramServer';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/sections/Footer';
 import { getAllContentData } from '@/lib/markdown';
@@ -68,7 +68,7 @@ export default async function Home() {
         />
 
         {/* Instagramセクション */}
-        <Instagram />
+        <InstagramServer />
 
         {/* お問い合わせセクション */}
         <Contact />
