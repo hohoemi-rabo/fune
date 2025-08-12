@@ -36,10 +36,15 @@ export default function AuroraText({
 
   useEffect(() => {
     let position = 100;
-    const animationSpeed = reverse ? 0.3 : 0.5;
+    // ピクセル/秒で速度を定義（フレームレート非依存）
+    const pixelsPerSecond = reverse ? 20 : 30;
+    let lastTime = performance.now();
     
-    const animate = () => {
-      position -= animationSpeed;
+    const animate = (currentTime: number) => {
+      const deltaTime = (currentTime - lastTime) / 1000; // 秒に変換
+      lastTime = currentTime;
+      
+      position -= pixelsPerSecond * deltaTime;
       if (position <= -100) {
         position = 100;
       }
@@ -176,10 +181,15 @@ export function DelayedAuroraText({
       setShowGradient(true);
       
       let position = 100;
-      const animationSpeed = reverse ? 0.3 : 0.5;
+      // ピクセル/秒で速度を定義（フレームレート非依存）
+      const pixelsPerSecond = reverse ? 20 : 30;
+      let lastTime = performance.now();
       
-      const animate = () => {
-        position -= animationSpeed;
+      const animate = (currentTime: number) => {
+        const deltaTime = (currentTime - lastTime) / 1000; // 秒に変換
+        lastTime = currentTime;
+        
+        position -= pixelsPerSecond * deltaTime;
         if (position <= -100) {
           position = 100;
         }
