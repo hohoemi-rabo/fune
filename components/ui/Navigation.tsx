@@ -32,6 +32,9 @@ export default function Navigation() {
     };
   }, [isOpen]);
 
+  // スクロール中フラグ
+  const [isScrolling, setIsScrolling] = useState(false);
+
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
@@ -42,21 +45,27 @@ export default function Navigation() {
     // overflow設定を即座に解除
     document.body.style.overflow = '';
 
+    // スクロール中なら何もしない
+    if (isScrolling) return;
+
     // カスタムスムーズスクロール実装（高性能PC対応）
     setTimeout(() => {
       const targetId = href.replace('#', '');
       const element = document.getElementById(targetId);
       if (element) {
-        const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        setIsScrolling(true);
+        
+        // ヘッダーの高さを考慮（固定ヘッダー分のオフセット）
+        const headerOffset = 80; // ヘッダーの高さ
+        const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - headerOffset;
         const startPosition = window.pageYOffset;
         const distance = targetPosition - startPosition;
-        const duration = 800; // 800msで固定（高性能PCでも一貫性を保つ）
-        let start: number | null = null;
+        const duration = 1000; // 1秒でよりスムーズに
+        const startTime = performance.now();
 
         const animation = (currentTime: number) => {
-          if (start === null) start = currentTime;
-          const timeElapsed = currentTime - start;
-          const progress = Math.min(timeElapsed / duration, 1);
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
           
           // easeInOutCubicイージング関数
           const easeInOutCubic = progress < 0.5
@@ -65,8 +74,12 @@ export default function Navigation() {
           
           window.scrollTo(0, startPosition + distance * easeInOutCubic);
           
-          if (timeElapsed < duration) {
+          if (progress < 1) {
             requestAnimationFrame(animation);
+          } else {
+            setIsScrolling(false);
+            // スクロール完了イベント
+            window.dispatchEvent(new Event('smoothscrollend'));
           }
         };
         
