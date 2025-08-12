@@ -85,7 +85,7 @@ export default function Navigation() {
         
         requestAnimationFrame(animation);
       }
-    }, 100);
+    }, 10);
   };
 
   return (
