@@ -42,12 +42,35 @@ export default function Navigation() {
     // overflow設定を即座に解除
     document.body.style.overflow = '';
 
-    // スムーズスクロールを少し遅延させて実行
+    // カスタムスムーズスクロール実装（高性能PC対応）
     setTimeout(() => {
       const targetId = href.replace('#', '');
       const element = document.getElementById(targetId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        const duration = 800; // 800msで固定（高性能PCでも一貫性を保つ）
+        let start: number | null = null;
+
+        const animation = (currentTime: number) => {
+          if (start === null) start = currentTime;
+          const timeElapsed = currentTime - start;
+          const progress = Math.min(timeElapsed / duration, 1);
+          
+          // easeInOutCubicイージング関数
+          const easeInOutCubic = progress < 0.5
+            ? 4 * progress * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+          
+          window.scrollTo(0, startPosition + distance * easeInOutCubic);
+          
+          if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+          }
+        };
+        
+        requestAnimationFrame(animation);
       }
     }, 100);
   };
