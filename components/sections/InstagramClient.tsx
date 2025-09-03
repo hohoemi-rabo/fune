@@ -48,86 +48,27 @@ export default function InstagramClient({ posts, instagramUrl }: InstagramClient
           Instagram
         </motion.h2>
 
+        {/* 準備中メッセージ */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainerVariants}
-        >
-          {posts.map((post, index) => (
-            <motion.a
-              key={post.id}
-              href={post.permalink || instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              variants={scaleInVariants}
-              custom={index}
-              className="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 group cursor-pointer block"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div className="relative w-full h-full bg-gray-100">
-                {/* ローディングスケルトン */}
-                {!loadedImages.has(post.id) && !errorImages.has(post.id) && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse" />
-                )}
-                
-                {/* エラー時のフォールバック */}
-                {errorImages.has(post.id) ? (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-100 to-pink-100">
-                    <FontAwesomeIcon
-                      icon={faInstagram}
-                      className="text-purple-400 text-6xl"
-                    />
-                  </div>
-                ) : (
-                  <Image
-                    src={post.image}
-                    alt={post.alt}
-                    fill
-                    className={`object-cover group-hover:scale-110 transition-all duration-500 ${
-                      loadedImages.has(post.id) ? 'opacity-100' : 'opacity-0'
-                    }`}
-                    sizes="(max-width: 768px) 50vw, 33vw"
-                    unoptimized={post.image.startsWith('http')}
-                    onLoad={() => handleImageLoad(post.id)}
-                    onError={() => handleImageError(post.id)}
-                    priority={index < 3}
-                  />
-                )}
-
-                {/* オーバーレイ */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <FontAwesomeIcon
-                    icon={faInstagram}
-                    className="text-white text-4xl transform scale-0 group-hover:scale-100 transition-transform duration-300"
-                  />
-                </div>
-              </div>
-            </motion.a>
-          ))}
-        </motion.div>
-
-        <motion.div
-          className="text-center mt-8"
+          className="text-center py-20"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerItemVariants}
         >
-          <a
-            href={instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:shadow-lg transition-all duration-300 font-zen font-medium transform hover:scale-105 group"
-          >
+          <div className="max-w-md mx-auto">
             <FontAwesomeIcon
               icon={faInstagram}
-              className="text-xl group-hover:rotate-12 transition-transform duration-300"
+              className="text-6xl text-gray-400 mb-6"
             />
-            フォローする
-          </a>
+            <h3 className="text-2xl font-zen font-medium text-deep-ocean mb-4">
+              準備中
+            </h3>
+            <p className="text-gray-600 font-kiwi">
+              現在インスタグラムとの連携を準備しています。<br />
+              しばらくお待ちください。
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

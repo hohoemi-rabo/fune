@@ -6,9 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { InstagramPost } from '@/types';
 import {
-  staggerContainerVariants,
   staggerItemVariants,
-  scaleInVariants,
 } from '@/lib/animations';
 import { getPlaceholderImage } from '@/lib/utils';
 import { SimpleParticlesBackground } from '@/components/effects/ParticlesBackground';
@@ -51,8 +49,7 @@ const defaultPosts: InstagramPost[] = [
   },
 ];
 
-export default function Instagram({ posts = defaultPosts }: InstagramProps) {
-  const instagramUrl = 'https://instagram.com'; // 実際のURLに変更してください
+export default function Instagram() {
 
   return (
     <section className="py-20 bg-sea-foam relative z-20 overflow-hidden">
@@ -72,63 +69,27 @@ export default function Instagram({ posts = defaultPosts }: InstagramProps) {
           Instagram
         </motion.h2>
 
+        {/* 準備中メッセージ */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainerVariants}
-        >
-          {posts.map((post, index) => (
-            <motion.div
-              key={post.id}
-              variants={scaleInVariants}
-              custom={index}
-              className="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 group cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div className="relative w-full h-full">
-                <Image
-                  src={post.image}
-                  alt={post.alt}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                  unoptimized={post.image.startsWith('http')}
-                />
-
-                {/* オーバーレイ */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <FontAwesomeIcon
-                    icon={faInstagram}
-                    className="text-white text-4xl transform scale-0 group-hover:scale-100 transition-transform duration-300"
-                  />
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          className="text-center mt-8"
+          className="text-center py-20"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerItemVariants}
         >
-          <a
-            href={instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:shadow-lg transition-all duration-300 font-zen font-medium transform hover:scale-105 group"
-          >
+          <div className="max-w-md mx-auto">
             <FontAwesomeIcon
               icon={faInstagram}
-              className="text-xl group-hover:rotate-12 transition-transform duration-300"
+              className="text-6xl text-gray-400 mb-6"
             />
-            フォローする
-          </a>
+            <h3 className="text-2xl font-zen font-medium text-deep-ocean mb-4">
+              準備中
+            </h3>
+            <p className="text-gray-600 font-kiwi">
+              現在インスタグラムとの連携を準備しています。<br />
+              しばらくお待ちください。
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
