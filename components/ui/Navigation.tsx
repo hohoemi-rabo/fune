@@ -48,44 +48,47 @@ export default function Navigation() {
     // スクロール中なら何もしない
     if (isScrolling) return;
 
-    // カスタムスムーズスクロール実装（高性能PC対応）
-    setTimeout(() => {
-      const targetId = href.replace('#', '');
-      const element = document.getElementById(targetId);
-      if (element) {
-        setIsScrolling(true);
+    console.log('🚀 スクロール開始 - 新バージョン');
+    
+    // シンプルで確実なスムーズスクロール
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      setIsScrolling(true);
+      
+      const headerOffset = 80;
+      const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      
+      // 短い距離は速く、長い距離はゆっくり
+      const duration = Math.min(1200, Math.max(400, Math.abs(distance) * 0.5));
+      const startTime = performance.now();
+      
+      console.log(`📏 距離: ${Math.abs(distance)}px, 時間: ${duration}ms`);
+      
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
         
-        // ヘッダーの高さを考慮（固定ヘッダー分のオフセット）
-        const headerOffset = 80; // ヘッダーの高さ
-        const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        const duration = 1000; // 1秒でよりスムーズに
-        const startTime = performance.now();
-
-        const animation = (currentTime: number) => {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          
-          // easeInOutCubicイージング関数
-          const easeInOutCubic = progress < 0.5
-            ? 4 * progress * progress * progress
-            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-          
-          window.scrollTo(0, startPosition + distance * easeInOutCubic);
-          
-          if (progress < 1) {
-            requestAnimationFrame(animation);
-          } else {
-            setIsScrolling(false);
-            // スクロール完了イベント
-            window.dispatchEvent(new Event('smoothscrollend'));
-          }
-        };
+        // 最初から動き出すイージング（easeOutQuart）
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
         
-        requestAnimationFrame(animation);
-      }
-    }, 10);
+        const currentPosition = startPosition + distance * easeOutQuart;
+        window.scrollTo(0, currentPosition);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          setIsScrolling(false);
+          window.dispatchEvent(new Event('smoothscrollend'));
+          console.log('✅ スクロール完了');
+        }
+      };
+      
+      // 即座に最初のフレームを実行
+      animate(performance.now());
+    }
   };
 
   return (
