@@ -32,9 +32,6 @@ export default function Navigation() {
     };
   }, [isOpen]);
 
-  // スクロール中フラグ
-  const [isScrolling, setIsScrolling] = useState(false);
-
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
@@ -45,49 +42,17 @@ export default function Navigation() {
     // overflow設定を即座に解除
     document.body.style.overflow = '';
 
-    // スクロール中なら何もしない
-    if (isScrolling) return;
-
-    console.log('🚀 スクロール開始 - 新バージョン');
-    
-    // シンプルで確実なスムーズスクロール
+    // シンプルなスムーズスクロール
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
-      setIsScrolling(true);
-      
       const headerOffset = 80;
       const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition;
       
-      // 短い距離は速く、長い距離はゆっくり
-      const duration = Math.min(1200, Math.max(400, Math.abs(distance) * 0.5));
-      const startTime = performance.now();
-      
-      console.log(`📏 距離: ${Math.abs(distance)}px, 時間: ${duration}ms`);
-      
-      const animate = (currentTime: number) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // 最初から動き出すイージング（easeOutQuart）
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        
-        const currentPosition = startPosition + distance * easeOutQuart;
-        window.scrollTo(0, currentPosition);
-        
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        } else {
-          setIsScrolling(false);
-          window.dispatchEvent(new Event('smoothscrollend'));
-          console.log('✅ スクロール完了');
-        }
-      };
-      
-      // 即座に最初のフレームを実行
-      animate(performance.now());
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
