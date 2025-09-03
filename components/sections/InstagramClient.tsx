@@ -1,34 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { InstagramPost } from '@/types';
 import {
-  staggerContainerVariants,
   staggerItemVariants,
-  scaleInVariants,
 } from '@/lib/animations';
 import { SimpleParticlesBackground } from '@/components/effects/ParticlesBackground';
-import { useState } from 'react';
 
-interface InstagramClientProps {
-  posts: InstagramPost[];
-  instagramUrl: string;
-}
-
-export default function InstagramClient({ posts, instagramUrl }: InstagramClientProps) {
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
-  const [errorImages, setErrorImages] = useState<Set<string>>(new Set());
-
-  const handleImageLoad = (postId: string) => {
-    setLoadedImages(prev => new Set(prev).add(postId));
-  };
-
-  const handleImageError = (postId: string) => {
-    setErrorImages(prev => new Set(prev).add(postId));
-  };
+export default function InstagramClient() {
 
   return (
     <section className="py-20 bg-sea-foam relative z-20 overflow-hidden">

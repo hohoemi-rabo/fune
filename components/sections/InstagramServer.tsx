@@ -49,5 +49,5 @@ export default async function InstagramServer() {
   // あなたのInstagramアカウントURLをここに設定してください
   const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://instagram.com/your_username';
 
-  return <InstagramClient posts={posts} instagramUrl={instagramUrl} />;
+  return <InstagramClient />;
 }

@@ -106,7 +106,7 @@ export function InstagramFeed({ limit = 6 }: InstagramFeedProps) {
   // API連携する場合はここでデータ取得処理を実装
   // 現在はデモ用の静的データを使用
 
-  return <Instagram posts={defaultPosts.slice(0, limit)} />;
+  return <Instagram />;
 }
 
 // インスタグラムグリッド（マソンリーレイアウト）
